@@ -2065,3 +2065,397 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================
+   ADDITIONAL ROMANTIC DECORATIONS
+   ========================================== */
+
+/* Pixel Clouds */
+.cloud-decor-1 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 90px);
+  top: 5%;
+  z-index: 1;
+  opacity: 0.75;
+  animation: cloudFloat 12s ease-in-out infinite;
+}
+
+.cloud-decor-2 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 85px);
+  top: 8%;
+  z-index: 1;
+  opacity: 0.7;
+  animation: cloudFloat 12s ease-in-out infinite 4s;
+}
+
+.cloud-decor-3 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 65px);
+  top: 32%;
+  z-index: 1;
+  opacity: 0.65;
+  animation: cloudFloat 12s ease-in-out infinite 8s;
+}
+
+@keyframes cloudFloat {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(8px) translateY(-4px);
+  }
+  50% {
+    transform: translateX(0) translateY(0);
+  }
+  75% {
+    transform: translateX(-8px) translateY(4px);
+  }
+}
+
+/* Tiny Airplane with Heart Trail */
+.airplane-trail-decor {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 70px);
+  top: 35%;
+  z-index: 2;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 6px;
+  animation: airplaneFly 8s ease-in-out infinite;
+}
+
+.tiny-airplane {
+  animation: planeWiggle 2s ease-in-out infinite;
+}
+
+.heart-trail-1 {
+  animation: heartTrailPulse 1.5s ease-in-out infinite;
+}
+
+.heart-trail-2 {
+  animation: heartTrailPulse 1.5s ease-in-out infinite 0.3s;
+}
+
+.heart-trail-3 {
+  animation: heartTrailPulse 1.5s ease-in-out infinite 0.6s;
+}
+
+@keyframes airplaneFly {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-12px) translateX(-5px);
+  }
+  50% {
+    transform: translateY(0) translateX(0);
+  }
+  75% {
+    transform: translateY(12px) translateX(5px);
+  }
+}
+
+@keyframes planeWiggle {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes heartTrailPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Floating Music Notes */
+.music-note-1 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 50px);
+  top: 48%;
+  z-index: 2;
+  opacity: 0.7;
+  animation: musicNoteDance 4s ease-in-out infinite;
+}
+
+.music-note-2 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 60px);
+  top: 58%;
+  z-index: 2;
+  opacity: 0.65;
+  animation: musicNoteDance 4s ease-in-out infinite 1.3s;
+}
+
+.music-note-3 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 40px);
+  top: 82%;
+  z-index: 2;
+  opacity: 0.6;
+  animation: musicNoteDance 4s ease-in-out infinite 2.6s;
+}
+
+@keyframes musicNoteDance {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(8deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+}
+
+/* Sleeping Cat */
+.sleeping-cat-decor {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 95px);
+  top: 88%;
+  z-index: 3;
+  opacity: 0.85;
+  transform-origin: bottom center;
+  animation: sleepingCatBreath 4s ease-in-out infinite;
+}
+
+@keyframes sleepingCatBreath {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.03);
+  }
+}
+
+/* Cat with Heart Balloon */
+.balloon-cat-decor {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 75px);
+  top: 75%;
+  z-index: 3;
+  opacity: 0.85;
+  animation: balloonCatFloat 5s ease-in-out infinite;
+}
+
+@keyframes balloonCatFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+/* Tiny Stars */
+.tiny-star-1 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 30px);
+  top: 18%;
+  z-index: 4;
+  animation: starTwinkleSpin 6s linear infinite;
+}
+
+.tiny-star-2 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 35px);
+  top: 42%;
+  z-index: 4;
+  animation: starTwinkleSpin 6s linear infinite 1.5s reverse;
+}
+
+.tiny-star-3 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 25px);
+  top: 65%;
+  z-index: 4;
+  animation: starTwinkleSpin 6s linear infinite 3s;
+}
+
+.tiny-star-4 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 28px);
+  top: 88%;
+  z-index: 4;
+  animation: starTwinkleSpin 6s linear infinite 4.5s reverse;
+}
+
+@keyframes starTwinkleSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: rotate(90deg) scale(1.15);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+    opacity: 0.6;
+  }
+  75% {
+    transform: rotate(270deg) scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Responsive - Tablet/Small Desktop for new decorations */
+@media (max-width: 1400px) {
+  .cloud-decor-1 {
+    left: 5px;
+    width: 45px;
+    height: 27px;
+  }
+
+  .cloud-decor-2 {
+    right: 5px;
+    width: 40px;
+    height: 25px;
+  }
+
+  .cloud-decor-3 {
+    left: 8px;
+    width: 35px;
+    height: 22px;
+  }
+
+  .airplane-trail-decor {
+    right: 5px;
+    transform: scale(0.75);
+  }
+
+  .music-note-1 {
+    left: 8px;
+    transform: scale(0.8);
+  }
+
+  .music-note-2 {
+    right: 8px;
+    transform: scale(0.8);
+  }
+
+  .music-note-3 {
+    left: 12px;
+    transform: scale(0.8);
+  }
+
+  .sleeping-cat-decor {
+    left: 5px;
+    width: 55px;
+    height: 35px;
+  }
+
+  .balloon-cat-decor {
+    right: 5px;
+    width: 40px;
+    height: 72px;
+  }
+
+  .tiny-star-1,
+  .tiny-star-2,
+  .tiny-star-3,
+  .tiny-star-4 {
+    transform: scale(0.8);
+  }
+
+  .tiny-star-1 {
+    left: 12px;
+  }
+
+  .tiny-star-2 {
+    right: 12px;
+  }
+
+  .tiny-star-3 {
+    left: 15px;
+  }
+
+  .tiny-star-4 {
+    right: 15px;
+  }
+}
+
+/* Responsive - Mobile for new decorations */
+@media (max-width: 768px) {
+  .cloud-decor-1,
+  .cloud-decor-2,
+  .cloud-decor-3,
+  .airplane-trail-decor,
+  .music-note-1,
+  .music-note-2,
+  .music-note-3,
+  .sleeping-cat-decor,
+  .balloon-cat-decor {
+    display: none;
+  }
+
+  .tiny-star-1 {
+    width: 12px;
+    height: 12px;
+    left: 6px;
+    top: 6px;
+  }
+
+  .tiny-star-2 {
+    width: 10px;
+    height: 10px;
+    right: 6px;
+    top: 50%;
+  }
+
+  .tiny-star-3 {
+    width: 10px;
+    height: 10px;
+    left: 8px;
+    top: auto;
+    bottom: 80px;
+  }
+
+  .tiny-star-4 {
+    width: 8px;
+    height: 8px;
+    right: 8px;
+    top: auto;
+    bottom: 40px;
+  }
+}
+
+/* Accessibility - Reduced Motion for new decorations */
+@media (prefers-reduced-motion: reduce) {
+  .cloud-decor-1,
+  .cloud-decor-2,
+  .cloud-decor-3,
+  .airplane-trail-decor,
+  .tiny-airplane,
+  .heart-trail-1,
+  .heart-trail-2,
+  .heart-trail-3,
+  .music-note-1,
+  .music-note-2,
+  .music-note-3,
+  .sleeping-cat-decor,
+  .balloon-cat-decor,
+  .tiny-star-1,
+  .tiny-star-2,
+  .tiny-star-3,
+  .tiny-star-4 {
+    animation: none !important;
+    opacity: 0.7;
+  }
+}
