@@ -316,6 +316,35 @@ body {
   }
 }
 
+@keyframes catBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes catBlink {
+  0%, 48%, 52%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes speedPulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .plane-cat-head {
   fill: var(--white);
   stroke: var(--ink);
@@ -693,6 +722,50 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.airspeed-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff7fb 0%, #f0f4ff 100%);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.airspeed-cat {
+  width: 32px;
+  height: 28px;
+  flex-shrink: 0;
+  animation: catBob 4s ease-in-out infinite;
+}
+
+.airspeed-cat .mini-cat-eye {
+  animation: catBlink 7s ease-in-out infinite;
+}
+
+.airspeed-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.airspeed-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.airspeed-value {
+  font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
+  font-size: 0.95rem;
+  color: var(--ink);
+  animation: speedPulse 0.3s ease-out;
 }
 
 .cat-sticker {
