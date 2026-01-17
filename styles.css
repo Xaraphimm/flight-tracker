@@ -2247,6 +2247,31 @@ body {
   font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
   font-size: 0.8rem;
   box-shadow: 2px 2px 0 var(--shadow);
+  /* Hidden link styling */
+  text-decoration: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.scripture-ref:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 4px 0 var(--shadow);
+  background: var(--bg-rose);
+}
+
+.scripture-ref:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0 var(--shadow);
+}
+
+.scripture-ref:focus {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.scripture-ref:visited {
+  color: var(--ink);
 }
 
 .scripture-decor {
