@@ -1762,6 +1762,7 @@ body {
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.75);
   pointer-events: none;
+  z-index: 1;
 }
 
 .music-player-retro::after {
@@ -1771,6 +1772,8 @@ body {
   border-radius: 8px;
   border: 2px solid rgba(58, 46, 63, 0.15);
   pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  z-index: 1;
 }
 
 .cat-ears {
@@ -1828,6 +1831,7 @@ body {
   box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
   aspect-ratio: 16 / 9;
   position: relative;
+  z-index: 2;
 }
 
 .music-player-frame {

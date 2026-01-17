@@ -318,35 +318,20 @@ const checkLandingConfetti = () => {
 // ==========================================
 
 const christianSongs = [
-  "nQWFzMvCfLE", // What A Beautiful Name - Hillsong Worship
-  "dy9nwe9_xzw", // Oceans - Hillsong UNITED
-  "y9s7GFGFl8M", // So Will I - Hillsong UNITED
   "Sc6SSHuZvQE", // Reckless Love - Cory Asbury
-  "fNHEi2NlYiQ", // Goodness of God - Bethel Music
-  "29IWPKKWYhE", // Way Maker - Sinach
-  "Zp6aygmvzM4", // The Blessing - Elevation Worship
-  "v4xKHUQdXNE", // Graves Into Gardens - Elevation Worship
-  "RO-UCD35AY8", // Build My Life - Passion
-  "sIaT8Jl2zpI", // You Say - Lauren Daigle
-  "odtml25GrMM", // Rescue - Lauren Daigle
-  "36odfqA-Xqw", // God Only Knows - for KING & COUNTRY
-  "KBD18rsVJHk", // How Great Is Our God - Chris Tomlin
   "CqybaIesbuA", // Good Good Father - Chris Tomlin
+  "KBD18rsVJHk", // How Great Is Our God - Chris Tomlin
+  "dy9nwe9_xzw", // Oceans - Hillsong UNITED
+  "nQWFzMvCfLE", // What A Beautiful Name - Hillsong Worship
+  "Zp6aygmvzM4", // The Blessing - Elevation Worship
   "QvLxZEU02uI", // Cornerstone - Hillsong Worship
-  "IcC1BhJUwNw", // Who You Say I Am - Hillsong Worship
-  "RVAGoGvTN5s", // O Come to the Altar - Elevation Worship
-  "yU_L6-lEFWw", // Here Again - Elevation Worship
-  "JiLr37c0U50", // Raise a Hallelujah - Bethel Music
-  "hKStvewihr4", // King of Kings - Hillsong Worship
   "B6fA35Ved-Y", // Even If - MercyMe
   "N_lrrq_opng", // I Can Only Imagine - MercyMe
-  "qOkImV2cSvs", // Only Jesus - Casting Crowns
-  "ECbU_xDLmvU", // Nobody - Casting Crowns
   "DXDGE_lRI0E", // 10,000 Reasons - Matt Redman
   "XtwIT8JjddM", // Build Your Kingdom Here - Rend Collective
-  "R0-uC-hEyaw", // Living Hope - Phil Wickham
   "XFRjr_x-yxU", // This Is Amazing Grace - Phil Wickham
-  "cqR1BPt9BI4", // Yes I Will - Vertical Worship
+  "sIaT8Jl2zpI", // You Say - Lauren Daigle
+  "36odfqA-Xqw", // God Only Knows - for KING & COUNTRY
 ];
 
 const buildMusicEmbedUrl = () => {
