@@ -3,6 +3,7 @@ let flightData = {
   arrivalTime: "2026-01-18T02:05:00+08:00",
   milesTotal: 1171 + 5513,
   status: "En route and on time",
+  airspeed: null,
 };
 
 const fetchLiveFlightData = async () => {
@@ -16,9 +17,20 @@ const fetchLiveFlightData = async () => {
     if (data.states && data.states.length > 0) {
       const state = data.states[0];
       console.log("Live flight data:", state);
+      
+      // Parse airspeed (velocity in m/s at index 9)
+      if (state[9] !== null && state[9] !== undefined) {
+        flightData.airspeed = {
+          mph: Math.round(state[9] * 2.23694),
+          kph: Math.round(state[9] * 3.6)
+        };
+      } else {
+        flightData.airspeed = null;
+      }
     }
   } catch (error) {
     console.warn("Failed to fetch live flight data, using scheduled times");
+    flightData.airspeed = null;
   }
 };
 
@@ -35,6 +47,7 @@ const flightStatus = document.getElementById("flightStatus");
 const confettiCanvas = document.getElementById("confettiCanvas");
 const planeMarker = document.getElementById("planeMarker");
 const flightTrack = document.getElementById("flightTrack");
+const airspeedValue = document.getElementById("airspeedValue");
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -70,6 +83,19 @@ const formatClock = (seconds) => {
 const formatNumber = (value) =>
   Math.round(value).toLocaleString("en-US");
 
+const funnyMessages = [
+  "😴 Cat fell asleep on speedometer",
+  "🚀 Too fast to measure!",
+  "🐱 Cats don't believe in speed limits",
+  "✈️ Speed-o-meter took a nap",
+  "🎯 Mach meow? Who knows!",
+  "😸 Speed is just a social construct",
+  "🌟 Flying by vibes only",
+  "🐾 Paws don't do numbers today",
+  "✨ Zoom level: mysterious",
+  "😺 Speedometer said 'not today'"
+];
+
 const updateFlightTrack = (progress) => {
   if (!flightTrack || !planeMarker) return;
   
@@ -81,6 +107,20 @@ const updateFlightTrack = (progress) => {
   
   const point = flightTrack.getPointAtLength(currentLength);
   planeMarker.setAttribute("transform", `translate(${point.x}, ${point.y})`);
+};
+
+const updateAirspeed = () => {
+  if (!airspeedValue) return;
+  
+  if (flightData.airspeed) {
+    airspeedValue.textContent = 
+      `${flightData.airspeed.mph} mph / ${flightData.airspeed.kph} kph`;
+    airspeedValue.style.animation = 'none';
+    setTimeout(() => airspeedValue.style.animation = '', 10);
+  } else {
+    const index = Math.floor(Date.now() / 15000) % funnyMessages.length;
+    airspeedValue.textContent = funnyMessages[index];
+  }
 };
 
 const updateUI = () => {
@@ -105,6 +145,7 @@ const updateUI = () => {
   if (flightStatus) flightStatus.textContent = flightData.status;
 
   updateFlightTrack(progress);
+  updateAirspeed();
 };
 
 const launchConfetti = () => {
