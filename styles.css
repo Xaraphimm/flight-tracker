@@ -270,6 +270,52 @@ body {
   }
 }
 
+@keyframes routeShimmer {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes planeFloat {
+  0%, 100% {
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+  }
+  50% {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+  }
+}
+
+@keyframes liveGlow {
+  0%, 100% {
+    box-shadow: 2px 2px 0 var(--shadow);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 2px 2px 8px rgba(134, 240, 224, 0.6), 2px 2px 0 var(--shadow);
+    opacity: 0.95;
+  }
+}
+
+@keyframes heartTwinkle {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: 20;
+  }
+}
+
 .plane-cat-head {
   fill: var(--white);
   stroke: var(--ink);
@@ -301,7 +347,7 @@ body {
   position: absolute;
   width: 34px;
   height: 34px;
-  animation: floaty 4.6s ease-in-out infinite;
+  animation: floaty 4.6s ease-in-out infinite, heartTwinkle 5s ease-in-out infinite;
   opacity: 0.8;
   z-index: 2;
 }
@@ -702,6 +748,7 @@ body {
   border: 2px solid var(--ink);
   box-shadow: 2px 2px 0 var(--shadow);
   font-size: 0.9rem;
+  animation: liveGlow 4s ease-in-out infinite;
 }
 
 .tracker-route {
@@ -968,6 +1015,19 @@ body {
   font-weight: bold;
 }
 
+.route-shimmer {
+  animation: routeShimmer 6s ease-in-out infinite;
+}
+
+.route-progress {
+  animation: dashMove 8s linear infinite;
+}
+
+#planeMarker {
+  animation: planeFloat 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
 .cat-stamp {
   overflow: hidden;
 }
@@ -1057,8 +1117,18 @@ body {
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-heart,
+  .status-chip,
+  .route-shimmer,
+  .route-progress,
+  #planeMarker,
+  .pixel-decor {
     animation: none !important;
-    transition: none !important;
   }
 }
 

@@ -30,9 +30,6 @@ const remainingTime = document.getElementById("remainingTime");
 const totalTime = document.getElementById("totalTime");
 const milesFlown = document.getElementById("milesFlown");
 const milesRemaining = document.getElementById("milesRemaining");
-const arrivalCountdown = document.getElementById("arrivalCountdown");
-const planeIcon = document.getElementById("planeIcon");
-const flightPath = document.getElementById("flightPath");
 const mainCountdown = document.getElementById("mainCountdown");
 const flightStatus = document.getElementById("flightStatus");
 const confettiCanvas = document.getElementById("confettiCanvas");
@@ -73,23 +70,6 @@ const formatClock = (seconds) => {
 const formatNumber = (value) =>
   Math.round(value).toLocaleString("en-US");
 
-const updatePlanePosition = (percent) => {
-  if (!flightPath || !planeIcon) return;
-  const pathLength = flightPath.getTotalLength();
-  const lengthAtPercent = Math.min(pathLength, Math.max(0, percent * pathLength));
-  const point = flightPath.getPointAtLength(lengthAtPercent);
-  const nextPoint = flightPath.getPointAtLength(
-    Math.min(pathLength, lengthAtPercent + 1)
-  );
-  const angle =
-    (Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * 180) /
-    Math.PI;
-  planeIcon.setAttribute(
-    "transform",
-    `translate(${point.x}, ${point.y}) rotate(${angle})`
-  );
-};
-
 const updateFlightTrack = (progress) => {
   if (!flightTrack || !planeMarker) return;
   
@@ -120,12 +100,10 @@ const updateUI = () => {
   ).padStart(2, "0")}m`;
   milesFlown.textContent = formatNumber(milesFlownValue);
   milesRemaining.textContent = formatNumber(milesRemainingValue);
-  arrivalCountdown.textContent = formatHms(remainingSeconds);
   
   if (mainCountdown) mainCountdown.textContent = formatHms(remainingSeconds);
   if (flightStatus) flightStatus.textContent = flightData.status;
 
-  updatePlanePosition(progress);
   updateFlightTrack(progress);
 };
 
