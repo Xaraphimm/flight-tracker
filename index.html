@@ -658,5 +658,82 @@
         </svg>
       </div>
     </div>
+
+    <!-- Music Widget -->
+    <div class="music-widget" id="musicWidget" role="region" aria-label="Music player">
+      <!-- Toggle Button (Minimized State) -->
+      <button class="music-toggle" id="musicToggle" aria-label="Open romantic music player" aria-expanded="false" aria-controls="musicPlayer">
+        <!-- Cat with Headphones SVG -->
+        <svg class="music-cat" viewBox="0 0 100 100" aria-hidden="true">
+          <!-- Headphone band -->
+          <path class="headphone-band" d="M20,45 Q50,15 80,45" fill="none" stroke="var(--purple)" stroke-width="6" stroke-linecap="round"/>
+          
+          <!-- Left ear cup -->
+          <ellipse class="headphone-cup" cx="20" cy="50" rx="12" ry="14" fill="var(--aqua)" stroke="var(--ink)" stroke-width="2"/>
+          <ellipse cx="20" cy="50" rx="6" ry="7" fill="var(--purple)" stroke="var(--ink)" stroke-width="1.5"/>
+          
+          <!-- Right ear cup -->
+          <ellipse class="headphone-cup" cx="80" cy="50" rx="12" ry="14" fill="var(--aqua)" stroke="var(--ink)" stroke-width="2"/>
+          <ellipse cx="80" cy="50" rx="6" ry="7" fill="var(--purple)" stroke="var(--ink)" stroke-width="1.5"/>
+          
+          <!-- Cat ears (behind headphones) -->
+          <polygon class="cat-ear" points="28,38 38,18 48,38" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="32,36 38,22 44,36" fill="var(--pink)"/>
+          <polygon class="cat-ear" points="52,38 62,18 72,38" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
+          <polygon points="56,36 62,22 68,36" fill="var(--pink)"/>
+          
+          <!-- Cat face -->
+          <ellipse class="cat-face" cx="50" cy="55" rx="26" ry="22" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
+          
+          <!-- Happy closed eyes -->
+          <path class="cat-eye-closed" d="M36,52 Q40,48 44,52" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="cat-eye-closed" d="M56,52 Q60,48 64,52" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+          
+          <!-- Nose -->
+          <polygon class="cat-nose" points="50,58 47,62 53,62" fill="var(--pink)"/>
+          
+          <!-- Smile -->
+          <path class="cat-mouth" d="M44,65 Q50,70 56,65" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/>
+          
+          <!-- Blush -->
+          <ellipse class="cat-blush" cx="34" cy="62" rx="5" ry="3" fill="var(--peach)" opacity="0.7"/>
+          <ellipse class="cat-blush" cx="66" cy="62" rx="5" ry="3" fill="var(--peach)" opacity="0.7"/>
+          
+          <!-- Floating music notes -->
+          <text class="music-note music-note-1" x="12" y="28" font-size="14" fill="var(--pink)">♪</text>
+          <text class="music-note music-note-2" x="82" y="24" font-size="12" fill="var(--sky)">♫</text>
+          <text class="music-note music-note-3" x="88" y="78" font-size="10" fill="var(--yellow)">♪</text>
+        </svg>
+        
+        <!-- Music Badge -->
+        <span class="music-badge" aria-hidden="true">♫</span>
+      </button>
+      
+      <!-- Player Panel (Expanded State) -->
+      <div class="music-player" id="musicPlayer" role="dialog" aria-modal="false" aria-labelledby="playerTitle" hidden>
+        <!-- Header -->
+        <div class="player-header">
+          <h4 id="playerTitle" class="player-title">
+            <span class="title-icon">♫</span>
+            Love Songs
+            <span class="title-heart">♡</span>
+          </h4>
+          <button class="player-close" id="playerClose" aria-label="Close music player" type="button">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        
+        <!-- YouTube Embed -->
+        <div class="player-body">
+          <div class="iframe-wrapper" id="iframeContainer">
+            <!-- Loaded dynamically via JS -->
+          </div>
+          <div class="player-caption">
+            Wholesome love songs for the journey ♡
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
