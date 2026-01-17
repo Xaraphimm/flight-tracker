@@ -592,6 +592,298 @@ body {
   font-size: 0.85rem;
 }
 
+.pill-heart {
+  background: var(--pink);
+}
+
+.pill-distance {
+  background: var(--sky);
+}
+
+/* ==========================================
+   ANIMATED ROUTE LINE
+   ========================================== */
+
+.route-line-animated {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+.route-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pink);
+  border: 1px solid var(--ink);
+  animation: routeDotPulse 2s ease-in-out infinite;
+}
+
+.route-dot:nth-child(1) { animation-delay: 0s; }
+.route-dot:nth-child(2) { animation-delay: 0.15s; }
+.route-dot:nth-child(3) { animation-delay: 0.3s; }
+.route-dot:nth-child(5) { animation-delay: 0.5s; }
+.route-dot:nth-child(6) { animation-delay: 0.65s; }
+.route-dot:nth-child(7) { animation-delay: 0.8s; }
+
+@keyframes routeDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+.route-plane-icon {
+  animation: routePlaneFloat 2s ease-in-out infinite;
+  filter: drop-shadow(1px 1px 0 var(--shadow));
+}
+
+@keyframes routePlaneFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(3px) rotate(5deg);
+  }
+}
+
+/* ==========================================
+   JOURNEY TIMELINE ICONS
+   ========================================== */
+
+.journey-timeline {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(255,246,251,0.8), rgba(240,244,255,0.8));
+  border-radius: 16px;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.journey-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.journey-step svg {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  background: var(--white);
+  box-shadow: 2px 2px 0 var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journey-step:hover svg {
+  transform: translateY(-4px);
+  box-shadow: 2px 6px 0 var(--shadow);
+}
+
+.journey-step::after {
+  content: attr(data-label);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* Completed steps */
+.journey-step.completed svg {
+  background: linear-gradient(135deg, var(--bg-mint), var(--white));
+}
+
+/* Active step */
+.journey-step.active svg {
+  background: linear-gradient(135deg, var(--bg-rose), var(--white));
+  animation: activeStepGlow 2s ease-in-out infinite;
+}
+
+.journey-step.active::after {
+  font-weight: bold;
+  color: var(--pink);
+}
+
+@keyframes activeStepGlow {
+  0%, 100% {
+    box-shadow: 2px 2px 0 var(--shadow), 0 0 0 0 rgba(255, 182, 213, 0);
+  }
+  50% {
+    box-shadow: 2px 2px 0 var(--shadow), 0 0 12px 4px rgba(255, 182, 213, 0.5);
+  }
+}
+
+/* Upcoming steps */
+.journey-step.upcoming svg {
+  background: var(--white);
+  opacity: 0.7;
+}
+
+.journey-step.upcoming::after {
+  opacity: 0.6;
+}
+
+/* Connector line between steps */
+.journey-connector {
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(90deg, var(--aqua), var(--pink));
+  border-radius: 999px;
+  position: relative;
+  min-width: 20px;
+  max-width: 40px;
+}
+
+.journey-connector::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: connectorShimmer 2s linear infinite;
+}
+
+@keyframes connectorShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Beating heart animation for active step */
+.beating-heart {
+  animation: heartBeat 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.1);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.08);
+  }
+}
+
+/* Pulse ring animation */
+.pulse-ring {
+  animation: pulseRing 2s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Responsive - Tablet */
+@media (max-width: 960px) {
+  .journey-timeline {
+    padding: 10px 8px;
+    gap: 2px;
+  }
+  
+  .journey-step svg {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .journey-step::after {
+    font-size: 0.55rem;
+  }
+  
+  .journey-connector {
+    min-width: 12px;
+    max-width: 24px;
+  }
+  
+  .route-line-animated {
+    gap: 4px;
+  }
+  
+  .route-dot {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 600px) {
+  .journey-timeline {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .journey-connector {
+    display: none;
+  }
+  
+  .journey-step svg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .journey-step::after {
+    font-size: 0.5rem;
+  }
+  
+  .route-line-animated {
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px 0;
+  }
+  
+  .route-dot:nth-child(n+5) {
+    display: none;
+  }
+  
+  .hero-pills {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .route-dot,
+  .route-plane-icon,
+  .journey-step.active svg,
+  .beating-heart,
+  .pulse-ring,
+  .journey-connector::after {
+    animation: none !important;
+  }
+}
+
 .hero-cats-compact {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
