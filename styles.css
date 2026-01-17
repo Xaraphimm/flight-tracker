@@ -249,6 +249,60 @@ body {
   font-size: 0.8rem;
 }
 
+/* Extremely subtle animations for skyline chips */
+.skyline-chip:nth-child(1) {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.skyline-chip:nth-child(2) {
+  animation: softPulse 5s ease-in-out infinite 0.5s;
+}
+
+.skyline-chip:nth-child(3) {
+  animation: subtleShimmer 6s ease-in-out infinite 1s;
+}
+
+.skyline-chip:nth-child(4) {
+  animation: gentleFloat 4s ease-in-out infinite 1.5s;
+}
+
+.skyline-chip:nth-child(5) {
+  animation: softPulse 5s ease-in-out infinite 2s;
+}
+
+.skyline-chip:nth-child(6) {
+  animation: subtleShimmer 6s ease-in-out infinite 2.5s;
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 2px 2px 0 var(--shadow);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 2px 2px 4px rgba(126, 106, 134, 0.3);
+  }
+}
+
+@keyframes subtleShimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.92;
+  }
+}
+
 .top-path {
   margin-bottom: 6px;
   position: relative;
@@ -1330,5 +1384,315 @@ body {
 
   .timer-value {
     font-size: clamp(1.8rem, 4.5vw, 3rem);
+  }
+}
+
+/* ==========================================
+   ROMANTIC PIXEL ART DECORATIONS
+   ========================================== */
+
+.romantic-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Jacob Cat (left side) */
+.jacob-cat-decor {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: calc((100vw - 1200px) / 2 - 100px);
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 3;
+  opacity: 0.9;
+  animation: catWiggle 4s ease-in-out infinite, floaty 3s ease-in-out infinite;
+}
+
+/* Maria Cat (right side) */
+.maria-cat-decor {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  right: calc((100vw - 1200px) / 2 - 100px);
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 3;
+  opacity: 0.9;
+  animation: catWiggle 4s ease-in-out infinite, floaty 3s ease-in-out infinite 0.5s;
+}
+
+/* Envelope Decorations */
+.envelope-decor-1 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 80px);
+  top: 15%;
+  z-index: 1;
+  opacity: 0.7;
+  animation: floatEnvelope 6s ease-in-out infinite;
+}
+
+.envelope-decor-2 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 80px);
+  top: 25%;
+  z-index: 1;
+  opacity: 0.75;
+  animation: floatEnvelope 6s ease-in-out infinite 1.5s;
+}
+
+.envelope-decor-3 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 70px);
+  top: 58%;
+  z-index: 1;
+  opacity: 0.7;
+  animation: floatEnvelope 6s ease-in-out infinite 3s;
+}
+
+.envelope-decor-4 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 70px);
+  top: 68%;
+  z-index: 1;
+  opacity: 0.75;
+  animation: floatEnvelope 6s ease-in-out infinite 4.5s;
+}
+
+/* Heart Clusters - Left */
+.heart-cluster-left-1 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 55px);
+  top: 22%;
+  z-index: 2;
+  animation: heartPulse 2.5s ease-in-out infinite, heartTwinkle 3s ease-in-out infinite;
+}
+
+.heart-cluster-left-2 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 85px);
+  top: 38%;
+  z-index: 2;
+  animation: heartPulse 2.5s ease-in-out infinite 0.8s, heartTwinkle 3s ease-in-out infinite 0.5s;
+}
+
+.heart-cluster-left-3 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 50px);
+  top: 72%;
+  z-index: 2;
+  animation: heartPulse 2.5s ease-in-out infinite 1.6s, heartTwinkle 3s ease-in-out infinite 1s;
+}
+
+/* Heart Clusters - Right */
+.heart-cluster-right-1 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 55px);
+  top: 28%;
+  z-index: 2;
+  animation: heartPulse 2.5s ease-in-out infinite 0.4s, heartTwinkle 3s ease-in-out infinite 0.3s;
+}
+
+.heart-cluster-right-2 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 80px);
+  top: 52%;
+  z-index: 2;
+  animation: heartPulse 2.5s ease-in-out infinite 1.2s, heartTwinkle 3s ease-in-out infinite 0.8s;
+}
+
+.heart-cluster-right-3 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 50px);
+  top: 78%;
+  z-index: 2;
+  animation: heartPulse 2.5s ease-in-out infinite 2s, heartTwinkle 3s ease-in-out infinite 1.3s;
+}
+
+/* Sparkle Decorations */
+.sparkle-decor-1 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 40px);
+  top: 10%;
+  z-index: 4;
+  animation: sparkleShine 2s ease-in-out infinite, twinkle 1.5s ease-in-out infinite;
+}
+
+.sparkle-decor-2 {
+  position: absolute;
+  right: calc((100vw - 1200px) / 2 - 45px);
+  top: 12%;
+  z-index: 4;
+  animation: sparkleShine 2s ease-in-out infinite 0.7s, twinkle 1.5s ease-in-out infinite 0.5s;
+}
+
+.sparkle-decor-3 {
+  position: absolute;
+  left: calc((100vw - 1200px) / 2 - 35px);
+  top: 85%;
+  z-index: 4;
+  animation: sparkleShine 2s ease-in-out infinite 1.4s, twinkle 1.5s ease-in-out infinite 1s;
+}
+
+/* Romantic Animation Keyframes */
+@keyframes catWiggle {
+  0%, 100% {
+    transform: translateY(-50%) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-50%) rotate(3deg);
+  }
+}
+
+@keyframes floatEnvelope {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(-2deg);
+  }
+  25% {
+    transform: translateY(-8px) translateX(3px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(0) translateX(0) rotate(-2deg);
+  }
+  75% {
+    transform: translateY(8px) translateX(-3px) rotate(2deg);
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes sparkleShine {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.25) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* Responsive - Tablet/Small Desktop */
+@media (max-width: 1400px) {
+  .jacob-cat-decor {
+    left: 10px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .maria-cat-decor {
+    right: 10px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .envelope-decor-1,
+  .envelope-decor-3 {
+    left: 10px;
+    transform: scale(0.7);
+  }
+
+  .envelope-decor-2,
+  .envelope-decor-4 {
+    right: 10px;
+    transform: scale(0.7);
+  }
+
+  .heart-cluster-left-1,
+  .heart-cluster-left-2,
+  .heart-cluster-left-3 {
+    left: 15px;
+    transform: scale(0.7);
+  }
+
+  .heart-cluster-right-1,
+  .heart-cluster-right-2,
+  .heart-cluster-right-3 {
+    right: 15px;
+    transform: scale(0.7);
+  }
+
+  .sparkle-decor-1,
+  .sparkle-decor-3 {
+    left: 20px;
+    transform: scale(0.7);
+  }
+
+  .sparkle-decor-2 {
+    right: 20px;
+    transform: scale(0.7);
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .jacob-cat-decor,
+  .maria-cat-decor,
+  .envelope-decor-1,
+  .envelope-decor-2,
+  .envelope-decor-3,
+  .envelope-decor-4,
+  .heart-cluster-left-1,
+  .heart-cluster-left-2,
+  .heart-cluster-left-3,
+  .heart-cluster-right-1,
+  .heart-cluster-right-2,
+  .heart-cluster-right-3 {
+    display: none;
+  }
+
+  .sparkle-decor-1 {
+    width: 16px;
+    height: 16px;
+    left: 8px;
+    top: 8px;
+  }
+
+  .sparkle-decor-2 {
+    width: 16px;
+    height: 16px;
+    right: 8px;
+    top: 8px;
+  }
+
+  .sparkle-decor-3 {
+    width: 16px;
+    height: 16px;
+    left: 8px;
+    bottom: 60px;
+    top: auto;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .jacob-cat-decor,
+  .maria-cat-decor,
+  .envelope-decor-1,
+  .envelope-decor-2,
+  .envelope-decor-3,
+  .envelope-decor-4,
+  .heart-cluster-left-1,
+  .heart-cluster-left-2,
+  .heart-cluster-left-3,
+  .heart-cluster-right-1,
+  .heart-cluster-right-2,
+  .heart-cluster-right-3,
+  .sparkle-decor-1,
+  .sparkle-decor-2,
+  .sparkle-decor-3 {
+    animation: none !important;
   }
 }

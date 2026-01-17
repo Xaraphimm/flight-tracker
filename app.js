@@ -2,7 +2,7 @@ let flightData = {
   departureTime: "2026-01-16T21:47:00-08:00",
   arrivalTime: "2026-01-18T02:05:00+08:00",
   milesTotal: 1171 + 5513,
-  status: "En route and on time",
+  status: "Flying closer to you ♡",
   airspeed: null,
 };
 
