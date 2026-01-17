@@ -2362,60 +2362,72 @@ body {
    ADDITIONAL ROMANTIC DECORATIONS
    ========================================== */
 
-/* Pixel Clouds */
+/* Pixel Clouds - spread out and more animated */
 .cloud-decor-1 {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 90px);
-  top: 5%;
+  left: calc((100vw - 1200px) / 2 - 120px);
+  top: 8%;
   z-index: 1;
-  opacity: 0.75;
-  animation: cloudFloat 12s ease-in-out infinite;
+  opacity: 0.8;
+  animation: cloudFloat1 10s ease-in-out infinite;
 }
 
 .cloud-decor-2 {
   position: absolute;
-  right: calc((100vw - 1200px) / 2 - 85px);
-  top: 8%;
+  right: calc((100vw - 1200px) / 2 - 100px);
+  top: 18%;
   z-index: 1;
-  opacity: 0.7;
-  animation: cloudFloat 12s ease-in-out infinite 4s;
+  opacity: 0.75;
+  animation: cloudFloat2 12s ease-in-out infinite;
 }
 
 .cloud-decor-3 {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 65px);
-  top: 32%;
+  right: calc((100vw - 1200px) / 2 - 80px);
+  top: 55%;
   z-index: 1;
-  opacity: 0.65;
-  animation: cloudFloat 12s ease-in-out infinite 8s;
+  opacity: 0.7;
+  animation: cloudFloat1 14s ease-in-out infinite 2s;
 }
 
-@keyframes cloudFloat {
+@keyframes cloudFloat1 {
   0%, 100% {
-    transform: translateX(0) translateY(0);
+    transform: translateX(0) translateY(0) rotate(0deg);
   }
   25% {
-    transform: translateX(8px) translateY(-4px);
+    transform: translateX(15px) translateY(-8px) rotate(2deg);
   }
   50% {
-    transform: translateX(0) translateY(0);
+    transform: translateX(0) translateY(0) rotate(0deg);
   }
   75% {
-    transform: translateX(-8px) translateY(4px);
+    transform: translateX(-15px) translateY(8px) rotate(-2deg);
   }
 }
 
-/* Tiny Airplane with Heart Trail */
+@keyframes cloudFloat2 {
+  0%, 100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateX(-12px) translateY(-6px) rotate(-2deg);
+  }
+  66% {
+    transform: translateX(12px) translateY(6px) rotate(2deg);
+  }
+}
+
+/* Tiny Airplane with Heart Trail - moved to left side, upper area */
 .airplane-trail-decor {
   position: absolute;
-  right: calc((100vw - 1200px) / 2 - 70px);
-  top: 35%;
+  left: calc((100vw - 1200px) / 2 - 90px);
+  top: 22%;
   z-index: 2;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   gap: 6px;
-  animation: airplaneFly 8s ease-in-out infinite;
+  animation: airplaneFly 6s ease-in-out infinite;
 }
 
 .tiny-airplane {
@@ -2439,107 +2451,119 @@ body {
     transform: translateY(0) translateX(0);
   }
   25% {
-    transform: translateY(-12px) translateX(-5px);
+    transform: translateY(-15px) translateX(10px);
   }
   50% {
     transform: translateY(0) translateX(0);
   }
   75% {
-    transform: translateY(12px) translateX(5px);
+    transform: translateY(15px) translateX(-10px);
   }
 }
 
 @keyframes planeWiggle {
   0%, 100% {
-    transform: rotate(-5deg);
+    transform: rotate(-8deg);
   }
   50% {
-    transform: rotate(5deg);
+    transform: rotate(8deg);
   }
 }
 
 @keyframes heartTrailPulse {
   0%, 100% {
-    opacity: 0.6;
-    transform: scale(0.9);
+    opacity: 0.5;
+    transform: scale(0.85);
   }
   50% {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
 }
 
-/* Floating Music Notes */
+/* Floating Music Notes - spread across both sides */
 .music-note-1 {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 50px);
-  top: 48%;
+  left: calc((100vw - 1200px) / 2 - 70px);
+  top: 42%;
   z-index: 2;
-  opacity: 0.7;
-  animation: musicNoteDance 4s ease-in-out infinite;
+  opacity: 0.75;
+  animation: musicNoteDance1 5s ease-in-out infinite;
 }
 
 .music-note-2 {
   position: absolute;
-  right: calc((100vw - 1200px) / 2 - 60px);
-  top: 58%;
+  right: calc((100vw - 1200px) / 2 - 70px);
+  top: 38%;
   z-index: 2;
-  opacity: 0.65;
-  animation: musicNoteDance 4s ease-in-out infinite 1.3s;
+  opacity: 0.7;
+  animation: musicNoteDance2 6s ease-in-out infinite;
 }
 
 .music-note-3 {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 40px);
-  top: 82%;
+  left: calc((100vw - 1200px) / 2 - 55px);
+  top: 68%;
   z-index: 2;
-  opacity: 0.6;
-  animation: musicNoteDance 4s ease-in-out infinite 2.6s;
+  opacity: 0.65;
+  animation: musicNoteDance1 5s ease-in-out infinite 1.5s;
 }
 
-@keyframes musicNoteDance {
+@keyframes musicNoteDance1 {
   0%, 100% {
-    transform: translateY(0) rotate(-8deg);
+    transform: translateY(0) rotate(-12deg);
   }
   25% {
-    transform: translateY(-5px) rotate(0deg);
+    transform: translateY(-12px) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(8deg);
+    transform: translateY(-18px) rotate(12deg);
   }
   75% {
-    transform: translateY(-5px) rotate(0deg);
+    transform: translateY(-8px) rotate(0deg);
   }
 }
 
-/* Sleeping Cat */
+@keyframes musicNoteDance2 {
+  0%, 100% {
+    transform: translateY(0) rotate(10deg);
+  }
+  33% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+  66% {
+    transform: translateY(-8px) rotate(10deg);
+  }
+}
+
+/* Sleeping Cat - bottom left, well spaced */
 .sleeping-cat-decor {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 95px);
-  top: 88%;
+  left: calc((100vw - 1200px) / 2 - 100px);
+  top: 85%;
   z-index: 3;
-  opacity: 0.85;
+  opacity: 0.9;
   transform-origin: bottom center;
-  animation: sleepingCatBreath 4s ease-in-out infinite;
+  animation: sleepingCatBreath 3s ease-in-out infinite;
 }
 
 @keyframes sleepingCatBreath {
   0%, 100% {
-    transform: scaleY(1);
+    transform: scaleY(1) scaleX(1);
   }
   50% {
-    transform: scaleY(1.03);
+    transform: scaleY(1.05) scaleX(1.02);
   }
 }
 
-/* Cat with Heart Balloon */
+/* Cat with Heart Balloon - moved to right side, mid-height */
 .balloon-cat-decor {
   position: absolute;
-  right: calc((100vw - 1200px) / 2 - 75px);
-  top: 75%;
+  right: calc((100vw - 1200px) / 2 - 90px);
+  top: 68%;
   z-index: 3;
-  opacity: 0.85;
-  animation: balloonCatFloat 5s ease-in-out infinite;
+  opacity: 0.9;
+  animation: balloonCatFloat 4s ease-in-out infinite;
 }
 
 @keyframes balloonCatFloat {
@@ -2551,37 +2575,37 @@ body {
   }
 }
 
-/* Tiny Stars */
+/* Tiny Stars - spread evenly across margins */
 .tiny-star-1 {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 30px);
-  top: 18%;
+  left: calc((100vw - 1200px) / 2 - 40px);
+  top: 12%;
   z-index: 4;
-  animation: starTwinkleSpin 6s linear infinite;
+  animation: starTwinkleSpin 5s linear infinite;
 }
 
 .tiny-star-2 {
   position: absolute;
-  right: calc((100vw - 1200px) / 2 - 35px);
-  top: 42%;
+  right: calc((100vw - 1200px) / 2 - 45px);
+  top: 28%;
   z-index: 4;
-  animation: starTwinkleSpin 6s linear infinite 1.5s reverse;
+  animation: starTwinkleSpin 5s linear infinite 1.2s reverse;
 }
 
 .tiny-star-3 {
   position: absolute;
-  left: calc((100vw - 1200px) / 2 - 25px);
-  top: 65%;
+  left: calc((100vw - 1200px) / 2 - 35px);
+  top: 55%;
   z-index: 4;
-  animation: starTwinkleSpin 6s linear infinite 3s;
+  animation: starTwinkleSpin 5s linear infinite 2.5s;
 }
 
 .tiny-star-4 {
   position: absolute;
-  right: calc((100vw - 1200px) / 2 - 28px);
-  top: 88%;
+  right: calc((100vw - 1200px) / 2 - 40px);
+  top: 82%;
   z-index: 4;
-  animation: starTwinkleSpin 6s linear infinite 4.5s reverse;
+  animation: starTwinkleSpin 5s linear infinite 3.8s reverse;
 }
 
 @keyframes starTwinkleSpin {
@@ -2610,76 +2634,82 @@ body {
 /* Responsive - Tablet/Small Desktop for new decorations */
 @media (max-width: 1400px) {
   .cloud-decor-1 {
-    left: 5px;
+    left: 8px;
+    top: 10%;
     width: 45px;
     height: 27px;
   }
 
   .cloud-decor-2 {
-    right: 5px;
+    right: 8px;
+    top: 20%;
     width: 40px;
     height: 25px;
   }
 
   .cloud-decor-3 {
-    left: 8px;
+    right: 10px;
+    top: 50%;
     width: 35px;
     height: 22px;
   }
 
   .airplane-trail-decor {
-    right: 5px;
-    transform: scale(0.75);
+    left: 5px;
+    top: 25%;
+    transform: scale(0.7);
   }
 
   .music-note-1 {
-    left: 8px;
-    transform: scale(0.8);
+    left: 10px;
+    top: 45%;
+    transform: scale(0.75);
   }
 
   .music-note-2 {
-    right: 8px;
-    transform: scale(0.8);
+    right: 10px;
+    top: 35%;
+    transform: scale(0.75);
   }
 
   .music-note-3 {
-    left: 12px;
-    transform: scale(0.8);
+    left: 15px;
+    top: 65%;
+    transform: scale(0.75);
   }
 
   .sleeping-cat-decor {
     left: 5px;
-    width: 55px;
-    height: 35px;
+    top: 82%;
+    width: 50px;
+    height: 32px;
   }
 
   .balloon-cat-decor {
     right: 5px;
-    width: 40px;
-    height: 72px;
-  }
-
-  .tiny-star-1,
-  .tiny-star-2,
-  .tiny-star-3,
-  .tiny-star-4 {
-    transform: scale(0.8);
+    top: 70%;
+    width: 35px;
+    height: 63px;
   }
 
   .tiny-star-1 {
-    left: 12px;
+    left: 15px;
+    top: 15%;
   }
 
   .tiny-star-2 {
-    right: 12px;
+    right: 15px;
+    top: 30%;
   }
 
   .tiny-star-3 {
-    left: 15px;
+    left: 18px;
+    top: 55%;
   }
 
   .tiny-star-4 {
-    right: 15px;
+    right: 18px;
+    top: 78%;
   }
 }
 
