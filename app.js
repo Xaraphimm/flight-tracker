@@ -313,4 +313,101 @@ const checkLandingConfetti = () => {
   setInterval(updateUI, 1000);
 })();
 
+// ==========================================
+// MUSIC PLAYER - RANDOM CHRISTIAN SONGS
+// ==========================================
+
+const christianSongs = [
+  "nQWFzMvCfLE", // What A Beautiful Name - Hillsong Worship
+  "dy9nwe9_xzw", // Oceans - Hillsong UNITED
+  "y9s7GFGFl8M", // So Will I - Hillsong UNITED
+  "Sc6SSHuZvQE", // Reckless Love - Cory Asbury
+  "fNHEi2NlYiQ", // Goodness of God - Bethel Music
+  "29IWPKKWYhE", // Way Maker - Sinach
+  "Zp6aygmvzM4", // The Blessing - Elevation Worship
+  "v4xKHUQdXNE", // Graves Into Gardens - Elevation Worship
+  "RO-UCD35AY8", // Build My Life - Passion
+  "sIaT8Jl2zpI", // You Say - Lauren Daigle
+  "odtml25GrMM", // Rescue - Lauren Daigle
+  "36odfqA-Xqw", // God Only Knows - for KING & COUNTRY
+  "KBD18rsVJHk", // How Great Is Our God - Chris Tomlin
+  "CqybaIesbuA", // Good Good Father - Chris Tomlin
+  "QvLxZEU02uI", // Cornerstone - Hillsong Worship
+  "IcC1BhJUwNw", // Who You Say I Am - Hillsong Worship
+  "RVAGoGvTN5s", // O Come to the Altar - Elevation Worship
+  "yU_L6-lEFWw", // Here Again - Elevation Worship
+  "JiLr37c0U50", // Raise a Hallelujah - Bethel Music
+  "hKStvewihr4", // King of Kings - Hillsong Worship
+  "B6fA35Ved-Y", // Even If - MercyMe
+  "N_lrrq_opng", // I Can Only Imagine - MercyMe
+  "qOkImV2cSvs", // Only Jesus - Casting Crowns
+  "ECbU_xDLmvU", // Nobody - Casting Crowns
+  "DXDGE_lRI0E", // 10,000 Reasons - Matt Redman
+  "XtwIT8JjddM", // Build Your Kingdom Here - Rend Collective
+  "R0-uC-hEyaw", // Living Hope - Phil Wickham
+  "XFRjr_x-yxU", // This Is Amazing Grace - Phil Wickham
+  "cqR1BPt9BI4", // Yes I Will - Vertical Worship
+];
+
+const buildMusicEmbedUrl = () => {
+  const randomIndex = Math.floor(Math.random() * christianSongs.length);
+  const startSong = christianSongs[randomIndex];
+  const remainingSongs = christianSongs.filter((id) => id !== startSong).join(",");
+
+  return (
+    "https://www.youtube.com/embed/" +
+    startSong +
+    "?playlist=" +
+    remainingSongs +
+    "&autoplay=1&mute=1&loop=1&rel=0&enablejsapi=1"
+  );
+};
+
+const initMusicPlayer = () => {
+  const playerContainer = document.getElementById("musicPlayer");
+  const muteToggle = document.getElementById("muteToggle");
+
+  if (!playerContainer || !muteToggle) return;
+
+  const iframe = document.createElement("iframe");
+  iframe.src = buildMusicEmbedUrl();
+  iframe.allow =
+    "autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+  iframe.referrerPolicy = "strict-origin-when-cross-origin";
+  iframe.allowFullscreen = true;
+  iframe.title = "Christian love songs for the Barrets";
+  iframe.loading = "lazy";
+
+  playerContainer.appendChild(iframe);
+
+  let isMuted = true;
+
+  const updateMuteUI = () => {
+    muteToggle.classList.toggle("is-muted", isMuted);
+    muteToggle.setAttribute("aria-pressed", String(isMuted));
+    muteToggle.setAttribute("aria-label", isMuted ? "Unmute music" : "Mute music");
+    muteToggle.textContent = isMuted ? "🔇" : "🔊";
+  };
+
+  const sendPlayerCommand = (command) => {
+    iframe.contentWindow?.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: command,
+        args: [],
+      }),
+      "*"
+    );
+  };
+
+  muteToggle.addEventListener("click", () => {
+    isMuted = !isMuted;
+    sendPlayerCommand(isMuted ? "mute" : "unMute");
+    updateMuteUI();
+  });
+
+  updateMuteUI();
+};
+
+document.addEventListener("DOMContentLoaded", initMusicPlayer);
 

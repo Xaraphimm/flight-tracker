@@ -486,28 +486,37 @@
             </div>
           </div>
           
-          <!-- Music Player - Cute Cat Frame -->
+          <!-- Music Player - Cute Cat Retro Frame -->
           <div class="music-player-strip">
-            <!-- Cat ears decoration -->
-            <div class="cat-ears" aria-hidden="true">
-              <svg class="cat-ear-left" viewBox="0 0 30 24" width="24" height="20">
-                <polygon points="15,2 2,22 28,22" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
-                <polygon points="15,6 6,20 24,20" fill="var(--pink)"/>
+            <div class="christian-decor" aria-hidden="true">
+              <svg class="cross-icon cross-left" viewBox="0 0 24 24">
+                <path d="M10 2h4v6h6v4h-6v10h-4v-10H4V8h6z" fill="currentColor"/>
               </svg>
-              <svg class="cat-ear-right" viewBox="0 0 30 24" width="24" height="20">
-                <polygon points="15,2 2,22 28,22" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
-                <polygon points="15,6 6,20 24,20" fill="var(--pink)"/>
+              <svg class="cross-icon cross-right" viewBox="0 0 24 24">
+                <path d="M10 2h4v6h6v4h-6v10h-4v-10H4V8h6z" fill="currentColor"/>
+              </svg>
+              <svg class="dove-icon" viewBox="0 0 24 24">
+                <path d="M4 14c4-1 6-4 7-7 2 3 5 5 9 5-2 3-5 6-10 7-3 1-5-1-6-3z" fill="currentColor"/>
+                <circle cx="13.5" cy="8.5" r="1" fill="var(--ink)"/>
               </svg>
             </div>
-            <div class="music-iframe-wrapper">
-              <iframe 
-                src="https://www.youtube.com/embed/Sc6SSHuZvQE?playlist=CqybaIesbuA,TCuvMqZBnzw,N_lrrq_opng,9xpTKcPFNiA,nQWFzMvCfLE,dy9nwe9_xzw,sIaT8Jl2zpI,XtwIT8JjddM,IcC1Bp13n_4,psHKYwL9_zA,K2dYkhYOsU0,6xPHCpjYfcY,KBD18rsVJHk,16KYvfIc2bE,PTx_YDlBgjo,0YUGwUgBvTU,mBcqria2wmg,hMPfPQtPMdA,oyPQs9WnAHo,B6fA35Ved-Y,Z6Heks4gBPw,XFRjr_x-yxU,TbT-hGz0lQI,XAh3oHZTbgw,6_P0ja7bsqc,K4Zz8Qw8QGM,PMIqlIJNkRA,LRdijJPniS4,qp6Z2D3_RRA,aqjnT3UHjR8,GsYLbDTbPMU,WYl3lYJVbT0,txVptXbZqso,SjMK0Awlogw,iE0_S5Bi5Es,0B_lnQIITxU,OjMQj-6ETqU&loop=1&rel=0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                title="Christian love songs for the Barrets"
-                loading="lazy">
-              </iframe>
+            <div class="music-player-retro">
+              <div class="cat-ears" aria-hidden="true">
+                <svg class="cat-ear-left" viewBox="0 0 30 24">
+                  <polygon points="15,2 2,22 28,22" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
+                  <polygon points="15,6 6,20 24,20" fill="var(--pink)"/>
+                </svg>
+                <svg class="cat-ear-right" viewBox="0 0 30 24">
+                  <polygon points="15,2 2,22 28,22" fill="var(--white)" stroke="var(--ink)" stroke-width="2"/>
+                  <polygon points="15,6 6,20 24,20" fill="var(--pink)"/>
+                </svg>
+              </div>
+              <button class="mute-toggle is-muted" id="muteToggle" aria-label="Unmute music" aria-pressed="true" type="button">
+                🔇
+              </button>
+              <div class="music-iframe-wrapper">
+                <div id="musicPlayer" class="music-player-frame" aria-label="Christian love songs for the Barrets"></div>
+              </div>
             </div>
             <div class="music-caption">For the Barrets ♡</div>
           </div>
