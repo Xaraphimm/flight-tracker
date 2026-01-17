@@ -1,6 +1,6 @@
 const flightData = {
-  totalMinutes: 12 * 60 + 18,
-  elapsedSeconds: 2 * 60 * 60 + 17 * 60,
+  departureTime: "2026-01-16T21:47:00-08:00",
+  arrivalTime: "2026-01-18T02:05:00+08:00",
   milesTotal: 1171 + 5513,
 };
 
@@ -16,8 +16,15 @@ const arrivalCountdown = document.getElementById("arrivalCountdown");
 const planeIcon = document.getElementById("planeIcon");
 const flightPath = document.getElementById("flightPath");
 
-const totalSeconds = flightData.totalMinutes * 60;
-let elapsedSeconds = flightData.elapsedSeconds;
+const departureTimestamp = new Date(flightData.departureTime).getTime();
+const arrivalTimestamp = new Date(flightData.arrivalTime).getTime();
+const totalSeconds = Math.max(
+  0,
+  Math.round((arrivalTimestamp - departureTimestamp) / 1000)
+);
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+const getElapsedSeconds = () =>
+  clamp(Math.round((Date.now() - departureTimestamp) / 1000), 0, totalSeconds);
 
 const formatHms = (seconds) => {
   const clamped = Math.max(0, seconds);
@@ -61,7 +68,10 @@ const updatePlanePosition = (percent) => {
 };
 
 const updateUI = () => {
-  const progress = Math.min(elapsedSeconds / totalSeconds, 1);
+  const elapsedSeconds = getElapsedSeconds();
+  const progress = totalSeconds
+    ? Math.min(elapsedSeconds / totalSeconds, 1)
+    : 0;
   const remainingSeconds = Math.max(totalSeconds - elapsedSeconds, 0);
   const milesRemainingValue = flightData.milesTotal * (1 - progress);
   const milesFlownValue = flightData.milesTotal - milesRemainingValue;
@@ -71,8 +81,8 @@ const updateUI = () => {
   liveTicker.textContent = `${formatClock(elapsedSeconds)} elapsed`;
   elapsedTime.textContent = formatHms(elapsedSeconds);
   remainingTime.textContent = formatHms(remainingSeconds);
-  totalTime.textContent = `${Math.floor(flightData.totalMinutes / 60)}h ${String(
-    flightData.totalMinutes % 60
+  totalTime.textContent = `${Math.floor(totalSeconds / 3600)}h ${String(
+    Math.floor((totalSeconds % 3600) / 60)
   ).padStart(2, "0")}m`;
   milesFlown.textContent = formatNumber(milesFlownValue);
   milesRemaining.textContent = formatNumber(milesRemainingValue);
@@ -84,8 +94,5 @@ const updateUI = () => {
 updateUI();
 
 setInterval(() => {
-  if (elapsedSeconds < totalSeconds) {
-    elapsedSeconds += 1;
-    updateUI();
-  }
+  updateUI();
 }, 1000);
