@@ -158,8 +158,12 @@ const updateUI = () => {
     flightData.airspeed = null; // Triggers funny message fallback
   }
 
-  progressFill.style.width = `${progress * 100}%`;
-  progressPercent.textContent = `${Math.round(progress * 100)}%`;
+  const progressValue = Math.round(progress * 100);
+  progressFill.style.width = `${progressValue}%`;
+  progressPercent.textContent = `${progressValue}%`;
+  // Update ARIA for accessibility
+  const progressBar = progressFill.parentElement;
+  if (progressBar) progressBar.setAttribute('aria-valuenow', progressValue);
   liveTicker.textContent = `${formatClock(elapsedSeconds)} elapsed`;
   elapsedTime.textContent = formatHms(elapsedSeconds);
   remainingTime.textContent = formatHms(remainingSeconds);

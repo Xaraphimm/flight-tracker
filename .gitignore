@@ -1,0 +1,3 @@
+encrypt-poems.js
+encrypted-output.json
+*.secret.*
