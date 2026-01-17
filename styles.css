@@ -1,0 +1,965 @@
+:root {
+  --bg-cream: #fff3e6;
+  --bg-lavender: #e9e2ff;
+  --bg-mint: #dff7f0;
+  --bg-rose: #ffe3f1;
+  --ink: #3a2e3f;
+  --pink: #ffb6d5;
+  --peach: #ffc9a9;
+  --sky: #9fd8ff;
+  --aqua: #86f0e0;
+  --purple: #c7a6ff;
+  --yellow: #ffe48c;
+  --white: #ffffff;
+  --shadow: #7e6a86;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "DotGothic16", "Trebuchet MS", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top, #ffffff 0%, transparent 45%),
+    linear-gradient(160deg, var(--bg-cream), var(--bg-lavender));
+  min-height: 100vh;
+}
+
+.page {
+  position: relative;
+  padding: 32px 18px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.3) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.35;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 10% 15%,
+      rgba(255, 182, 213, 0.35),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(159, 216, 255, 0.4),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 30% 85%,
+      rgba(255, 228, 140, 0.35),
+      transparent 50%
+    );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  padding: 22px;
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 rgba(126, 106, 134, 0.5);
+  backdrop-filter: blur(6px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 0.9fr);
+  gap: 24px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-family: "Bagel Fat One", "Cherry Bomb One", "Comic Sans MS", cursive;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  letter-spacing: 0.02em;
+}
+
+.hero-intro h1 {
+  margin: 12px 0 8px;
+}
+
+.subtitle {
+  margin: 0 0 16px;
+  font-size: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--aqua);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.skyline {
+  margin-bottom: 26px;
+  padding: 22px 22px 20px;
+  background: linear-gradient(160deg, #fff6fb, #f0f7ff);
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(126, 106, 134, 0.45);
+}
+
+.skyline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 18% 20%,
+      rgba(255, 182, 213, 0.4),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(159, 216, 255, 0.4),
+      transparent 40%
+    );
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.skyline-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.skyline-title {
+  font-family: "Bagel Fat One", "Cherry Bomb One", "Comic Sans MS", cursive;
+  font-size: 1.6rem;
+  margin-top: 8px;
+}
+
+.skyline-hearts {
+  display: flex;
+  gap: 6px;
+}
+
+.heart-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.heart-shape {
+  fill: var(--pink);
+  stroke: var(--ink);
+  stroke-width: 1.6;
+}
+
+.skyline-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.skyline-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--bg-rose);
+  box-shadow: 2px 2px 0 var(--shadow);
+  font-size: 0.8rem;
+}
+
+.top-path {
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.flight-glow {
+  opacity: 0.45;
+}
+
+.flight-contrail {
+  opacity: 0.7;
+  animation: contrail 2.4s linear infinite;
+}
+
+@keyframes contrail {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.plane-cat-head {
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+
+.plane-cat-ear {
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.plane-cat-eye {
+  fill: var(--ink);
+}
+
+.plane-cat-nose {
+  fill: var(--pink);
+}
+
+.plane-cat-tail {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.floating-heart {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  animation: floaty 4.6s ease-in-out infinite;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.heart-1 {
+  top: 18px;
+  left: 10%;
+  animation-delay: 0.2s;
+}
+
+.heart-2 {
+  top: 80px;
+  right: 12%;
+  animation-delay: 0.6s;
+}
+
+.heart-3 {
+  top: 36px;
+  right: 36%;
+  animation-delay: 0.1s;
+}
+
+.heart-4 {
+  top: 110px;
+  left: 36%;
+  animation-delay: 1.1s;
+}
+
+.heart-5 {
+  top: 160px;
+  right: 22%;
+  animation-delay: 0.4s;
+}
+
+.heart-6 {
+  top: 150px;
+  left: 20%;
+  animation-delay: 0.9s;
+}
+
+.floating-heart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.route-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.flag-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.flag {
+  width: 46px;
+  height: 28px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--shadow);
+  background: var(--white);
+}
+
+.flag svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.flag-label {
+  font-size: 0.9rem;
+}
+
+.route-line {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-arrow {
+  background: var(--pink);
+  border-radius: 999px;
+  padding: 4px 10px;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-mini-cats {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mini-cat {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.mini-cat svg {
+  width: 36px;
+  height: 36px;
+}
+
+.mini-cat-face {
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.mini-cat-ear {
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.mini-cat-eye {
+  fill: var(--ink);
+}
+
+.mini-cat-nose {
+  fill: var(--pink);
+}
+
+.mini-cat-blush {
+  fill: var(--peach);
+}
+
+.pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--yellow);
+  box-shadow: 2px 2px 0 var(--shadow);
+  font-size: 0.85rem;
+}
+
+.hero-cats {
+  display: grid;
+  gap: 18px;
+}
+
+.hero-cats .cat-card {
+  animation: floaty 4s ease-in-out infinite;
+}
+
+.hero-cats .cat-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.hero-cats .cat-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.cat-card {
+  text-align: center;
+  background: linear-gradient(160deg, #fff9f0, #ffeef8);
+}
+
+.cat-title {
+  font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
+  font-size: 1.4rem;
+}
+
+.cat-svg {
+  width: 100%;
+  max-width: 220px;
+  margin: 8px auto 0;
+  display: block;
+}
+
+.cat-caption {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+}
+
+.cat-fur {
+  fill: var(--white);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.cat-eye {
+  fill: var(--ink);
+}
+
+.cat-nose {
+  fill: var(--pink);
+}
+
+.cat-blush {
+  fill: var(--peach);
+}
+
+.cat-tail {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.heart-doodle {
+  fill: var(--pink);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.plane-body {
+  fill: var(--sky);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.plane-wing,
+.plane-tail {
+  fill: var(--purple);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.plane-prop {
+  fill: var(--yellow);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.suitcase {
+  fill: var(--peach);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.suitcase-strap,
+.suitcase-handle {
+  fill: var(--purple);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.tracker {
+  margin: 28px 0 24px;
+  background: linear-gradient(150deg, #fffef7, #f2f4ff);
+  position: relative;
+  z-index: 1;
+}
+
+.cat-sticker {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  border: 2px solid var(--ink);
+  background: #fff7fb;
+  display: grid;
+  place-items: center;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.cat-sticker svg {
+  width: 70px;
+  height: 70px;
+}
+
+.tracker-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tracker-top > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tracker-top > div:first-child > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tracker h2 {
+  font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
+  margin: 0 0 4px;
+}
+
+.tracker-sub {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.status-chip {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--aqua);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+  font-size: 0.9rem;
+}
+
+.tracker-route {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+
+.airport {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.airport-code {
+  font-size: 1.2rem;
+  font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
+}
+
+.airport-city {
+  font-size: 0.85rem;
+}
+
+.path-wrap {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+
+#flightPathSvg {
+  width: 100%;
+  height: 160px;
+}
+
+.progress-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: 2px solid var(--ink);
+  background: #fff7fb;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.progress-pill #progressPercent {
+  font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
+  font-size: 1.1rem;
+}
+
+.progress-pill,
+.progress-meta .meta-block:last-child {
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 182, 213, 0.45),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(159, 216, 255, 0.4),
+      transparent 45%
+    );
+}
+
+.plane-icon > rect,
+.plane-icon > polygon {
+  fill: var(--pink);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.plane-icon {
+  transition: transform 0.8s ease;
+  filter: drop-shadow(2px 2px 0 rgba(126, 106, 134, 0.4));
+}
+
+.progress-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  overflow: hidden;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.progress-pill .pill-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--pink), var(--sky));
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.8);
+  transition: width 0.6s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.2)
+  );
+  transform: translateX(-60%);
+  animation: shimmer 3s linear infinite;
+}
+
+.progress-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.progress-meta .meta-block:last-child {
+  background: var(--bg-rose);
+  border-radius: 999px;
+  padding: 6px 12px;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+  font-size: 0.8rem;
+}
+
+.progress-meta .meta-block:last-child {
+  background: var(--bg-rose);
+  border-radius: 999px;
+  padding: 6px 12px;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+  font-size: 0.8rem;
+}
+
+.meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.cat-gallery {
+  background: linear-gradient(160deg, #fff6f6, #f4f8ff);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 10px;
+  margin: 12px 0 6px;
+}
+
+.gallery-tile {
+  border-radius: 14px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  padding: 6px;
+  box-shadow: 2px 2px 0 var(--shadow);
+  display: grid;
+  place-items: center;
+}
+
+.gallery-tile svg {
+  width: 100%;
+  height: auto;
+}
+
+.cat-stamp {
+  overflow: hidden;
+}
+
+.corner-heart {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+.corner-heart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.details-card h3 {
+  font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
+  margin-top: 0;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(58, 46, 63, 0.3);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 26px;
+  font-size: 0.8rem;
+}
+
+.paw-trail {
+  position: absolute;
+  bottom: 12px;
+  right: 18px;
+  display: flex;
+  gap: 6px;
+  opacity: 0.65;
+}
+
+.paw-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.paw-pad {
+  fill: var(--pink);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.paw-base {
+  fill: var(--peach);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(60%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+.pixel-decor {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  fill: var(--pink);
+  opacity: 0.65;
+  image-rendering: pixelated;
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.hero,
+.tracker,
+.details-grid,
+.skyline {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.skyline {
+  animation-delay: 0.05s;
+}
+
+.hero {
+  animation-delay: 0.15s;
+}
+
+.tracker {
+  animation-delay: 0.25s;
+}
+
+.details-grid {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decor-1 {
+  top: 14px;
+  right: 18px;
+}
+
+.decor-2 {
+  bottom: 40px;
+  left: 22px;
+  fill: var(--yellow);
+}
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .route-row {
+    flex-direction: column;
+  }
+
+  .tracker-route {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .skyline-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 18px;
+  }
+
+  .route-line {
+    flex-direction: column;
+  }
+
+  .progress-meta {
+    flex-direction: column;
+  }
+
+  .floating-heart {
+    width: 28px;
+    height: 28px;
+  }
+
+  .paw-trail {
+    position: static;
+    justify-content: center;
+    margin-top: 12px;
+  }
+}
