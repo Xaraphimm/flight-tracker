@@ -3151,7 +3151,7 @@ body {
 
 /* Success Message Overlay */
 .success-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -3160,7 +3160,7 @@ body {
   align-items: center;
   justify-content: center;
   background: rgba(255, 247, 251, 0.95);
-  z-index: 100;
+  z-index: 10000;
   animation: successFadeIn 0.3s ease-out;
 }
 

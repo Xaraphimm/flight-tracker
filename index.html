@@ -1077,6 +1077,45 @@
         const LOCKOUT_TIME = 30000; // 30 seconds
         const ATTEMPT_DELAY = 1000; // 1 second between attempts
         
+        // Funny error messages
+        const FUNNY_ERRORS = [
+          "get out techfluence",
+          "stop breaking in, Al",
+          "this isn't your letter, buddy",
+          "nice try, hacker cat",
+          "wrong code, wrong vibes",
+          "nope! not today!",
+          "that's not even close lol",
+          "are you just mashing keys?",
+          "Al, I know it's you. stop.",
+          "access denied, friend",
+          "did you really think that would work?",
+          "bruh.",
+          "imagine guessing wrong... couldn't be you",
+          "techfluence energy detected. rejected.",
+        ];
+        
+        const SHORT_CODE_ERRORS = [
+          "that's way too short, try harder",
+          "did you even try?",
+          "that's not a code, that's a typo",
+          "Al typed this, didn't he?",
+          "more characters needed, less guessing",
+        ];
+        
+        const LOCKOUT_ERRORS = [
+          "okay that's enough. sit in timeout for 30 seconds",
+          "5 strikes, you're out! cool off for 30 sec",
+          "banned for 30 seconds. think about what you did.",
+          "Al, go touch grass for 30 seconds",
+          "too many wrong guesses! locked for 30 sec",
+          "skill issue. try again in 30 seconds",
+        ];
+        
+        function getRandomError(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
+        }
+        
         // DOM elements
         const btn = document.getElementById('specialAccessBtn');
         const modal = document.getElementById('specialAccessModal');
@@ -1230,23 +1269,24 @@
           const now = Date.now();
           if (now < lockoutUntil) {
             const remaining = Math.ceil((lockoutUntil - now) / 1000);
-            showError(`Too many attempts. Please wait ${remaining} seconds.`);
+            showError(`still locked out... ${remaining}s remaining`);
             return;
           }
           
           const password = input.value.trim();
           
           if (!password) {
-            showError('Please enter an access code.');
+            showError('type something at least...');
             return;
           }
           
           if (password.length < 20) {
-            showError('Invalid access code format.');
+            showError(getRandomError(SHORT_CODE_ERRORS));
             attemptCount++;
             if (attemptCount >= MAX_ATTEMPTS) {
               lockoutUntil = now + LOCKOUT_TIME;
               attemptCount = 0;
+              showError(getRandomError(LOCKOUT_ERRORS));
             }
             return;
           }
@@ -1281,13 +1321,13 @@
               if (attemptCount >= MAX_ATTEMPTS) {
                 lockoutUntil = Date.now() + LOCKOUT_TIME;
                 attemptCount = 0;
-                showError(`Too many failed attempts. Please wait 30 seconds.`);
+                showError(getRandomError(LOCKOUT_ERRORS));
               } else {
-                showError(`Invalid access code. ${MAX_ATTEMPTS - attemptCount} attempts remaining.`);
+                showError(`${getRandomError(FUNNY_ERRORS)} (${MAX_ATTEMPTS - attemptCount} left)`);
               }
             }
           } catch (err) {
-            showError('An error occurred. Please try again.');
+            showError('something broke... try again?');
           } finally {
             setLoading(false);
           }
