@@ -127,6 +127,47 @@ body {
   box-shadow: 8px 8px 0 rgba(126, 106, 134, 0.45);
 }
 
+.skyline-timer-hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: linear-gradient(160deg, #fff0f8, #f0f4ff);
+  border-radius: 20px;
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.timer-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.timer-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.timer-value {
+  font-family: "Bagel Fat One", "Cherry Bomb One", "Comic Sans MS", cursive;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.timer-status {
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--aqua);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
 .skyline::after {
   content: "";
   position: absolute;
