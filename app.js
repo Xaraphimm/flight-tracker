@@ -35,6 +35,9 @@ const planeIcon = document.getElementById("planeIcon");
 const flightPath = document.getElementById("flightPath");
 const mainCountdown = document.getElementById("mainCountdown");
 const flightStatus = document.getElementById("flightStatus");
+const confettiCanvas = document.getElementById("confettiCanvas");
+const planeMarker = document.getElementById("planeMarker");
+const flightTrack = document.getElementById("flightTrack");
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -87,6 +90,19 @@ const updatePlanePosition = (percent) => {
   );
 };
 
+const updateFlightTrack = (progress) => {
+  if (!flightTrack || !planeMarker) return;
+  
+  const pathLength = flightTrack.getTotalLength();
+  const currentLength = pathLength * progress;
+  
+  flightTrack.style.strokeDasharray = `${currentLength} ${pathLength}`;
+  flightTrack.style.strokeDashoffset = "0";
+  
+  const point = flightTrack.getPointAtLength(currentLength);
+  planeMarker.setAttribute("transform", `translate(${point.x}, ${point.y})`);
+};
+
 const updateUI = () => {
   const { total: totalSeconds, elapsed: elapsedSeconds } = getTimestamps();
   const progress = totalSeconds ? Math.min(elapsedSeconds / totalSeconds, 1) : 0;
@@ -110,11 +126,138 @@ const updateUI = () => {
   if (flightStatus) flightStatus.textContent = flightData.status;
 
   updatePlanePosition(progress);
+  updateFlightTrack(progress);
+};
+
+const launchConfetti = () => {
+  if (!confettiCanvas) return;
+  const ctx = confettiCanvas.getContext("2d");
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+
+  const particles = [];
+  const particleCount = 150;
+  const colors = ["#ffb6d5", "#9fd8ff", "#ffe48c", "#c7a6ff", "#86f0e0"];
+  const shapes = ["heart", "star", "circle"];
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * confettiCanvas.width,
+      y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+      r: Math.random() * 4 + 2,
+      d: Math.random() * particleCount,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      shape: shapes[Math.floor(Math.random() * shapes.length)],
+      tilt: Math.random() * 10 - 5,
+      tiltAngle: 0,
+      tiltAngleIncrement: Math.random() * 0.07 + 0.05,
+      vx: Math.random() * 2 - 1,
+      vy: Math.random() * 3 + 2,
+    });
+  }
+
+  const drawHeart = (ctx, x, y, size, color) => {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    const topCurveHeight = size * 0.3;
+    ctx.moveTo(x, y + topCurveHeight);
+    ctx.bezierCurveTo(x, y, x - size / 2, y, x - size / 2, y + topCurveHeight);
+    ctx.bezierCurveTo(
+      x - size / 2,
+      y + (size + topCurveHeight) / 2,
+      x,
+      y + (size + topCurveHeight) / 1.2,
+      x,
+      y + size
+    );
+    ctx.bezierCurveTo(
+      x,
+      y + (size + topCurveHeight) / 1.2,
+      x + size / 2,
+      y + (size + topCurveHeight) / 2,
+      x + size / 2,
+      y + topCurveHeight
+    );
+    ctx.bezierCurveTo(x + size / 2, y, x, y, x, y + topCurveHeight);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  };
+
+  const drawStar = (ctx, x, y, size, color) => {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      ctx.lineTo(
+        x + size * Math.cos(((18 + i * 72) * Math.PI) / 180),
+        y - size * Math.sin(((18 + i * 72) * Math.PI) / 180)
+      );
+      ctx.lineTo(
+        x + (size / 2) * Math.cos(((54 + i * 72) * Math.PI) / 180),
+        y - (size / 2) * Math.sin(((54 + i * 72) * Math.PI) / 180)
+      );
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  };
+
+  let animationId;
+  const animate = () => {
+    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+    particles.forEach((p, i) => {
+      p.tiltAngle += p.tiltAngleIncrement;
+      p.y += p.vy;
+      p.x += p.vx;
+      p.tilt = Math.sin(p.tiltAngle) * 15;
+
+      if (p.y > confettiCanvas.height) particles.splice(i, 1);
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.tilt * Math.PI) / 180);
+
+      if (p.shape === "heart") {
+        drawHeart(ctx, 0, 0, p.r * 2, p.color);
+      } else if (p.shape === "star") {
+        drawStar(ctx, 0, 0, p.r * 1.5, p.color);
+      } else {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+
+    if (particles.length > 0) {
+      animationId = requestAnimationFrame(animate);
+    } else {
+      confettiCanvas.style.display = "none";
+    }
+  };
+
+  animate();
+};
+
+const checkLandingConfetti = () => {
+  const { total, elapsed } = getTimestamps();
+  const hasLanded = elapsed >= total;
+  const confettiShown = localStorage.getItem("confettiShown");
+
+  if (hasLanded && !confettiShown) {
+    localStorage.setItem("confettiShown", "true");
+    setTimeout(() => launchConfetti(), 500);
+  }
 };
 
 (async () => {
   await fetchLiveFlightData();
   updateUI();
+  checkLandingConfetti();
   setInterval(updateUI, 1000);
   setInterval(fetchLiveFlightData, 120000);
 })();

@@ -12,6 +12,7 @@
     <script src="app.js" defer></script>
   </head>
   <body>
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
     <div class="page">
       <div class="pixel-decor decor-1">
         <svg viewBox="0 0 7 7" aria-hidden="true">
@@ -202,6 +203,40 @@
           <span class="skyline-chip">Cozy altitude 34k ft</span>
           <span class="skyline-chip">Cabin mood: purr-fect</span>
           <span class="skyline-chip">Cloud hugs: extra</span>
+        </div>
+      </section>
+
+      <section class="flight-track card">
+        <h3>Live Flight Path</h3>
+        <div class="track-container">
+          <svg id="trackMap" viewBox="0 0 800 400" aria-hidden="true">
+            <defs>
+              <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#e0f4ff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#b3e0ff;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="800" height="400" fill="url(#oceanGradient)" />
+            
+            <text x="80" y="80" class="map-label" font-size="16" fill="#3a2e3f">SEA</text>
+            <circle cx="100" cy="100" r="8" fill="#ffb6d5" stroke="#3a2e3f" stroke-width="2"/>
+            
+            <text x="680" y="320" class="map-label" font-size="16" fill="#3a2e3f">MNL</text>
+            <circle cx="700" cy="300" r="8" fill="#ffb6d5" stroke="#3a2e3f" stroke-width="2"/>
+            
+            <path id="routePath" d="M 100 100 Q 400 50 700 300" stroke="#9fd8ff" stroke-width="3" fill="none" stroke-dasharray="8 6" opacity="0.6"/>
+            <path id="flightTrack" d="M 100 100 Q 400 50 700 300" stroke="#3a2e3f" stroke-width="4" fill="none" stroke-linecap="round"/>
+            
+            <g id="planeMarker">
+              <circle cx="0" cy="0" r="10" fill="#ffe48c" stroke="#3a2e3f" stroke-width="2"/>
+              <text x="0" y="5" text-anchor="middle" font-size="12">✈️</text>
+            </g>
+          </svg>
+        </div>
+        <div class="track-legend">
+          <span class="legend-item"><span class="legend-dot" style="background: #ffb6d5;"></span> Airports</span>
+          <span class="legend-item"><span class="legend-dot" style="background: #3a2e3f;"></span> Flight path</span>
+          <span class="legend-item"><span class="legend-dot" style="background: #ffe48c;"></span> Current position</span>
         </div>
       </section>
 
