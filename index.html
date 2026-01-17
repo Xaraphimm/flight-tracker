@@ -114,90 +114,13 @@
         </svg>
       </div>
 
-      <section class="skyline card">
+      <section class="skyline-compact card">
         <div class="skyline-timer-hero">
           <div class="timer-main">
             <div class="timer-label">Jacob arrives in</div>
             <div class="timer-value" id="mainCountdown">10h 01m 00s</div>
             <div class="timer-status" id="flightStatus">En route and on time</div>
           </div>
-        </div>
-        <div class="skyline-header">
-          <div>
-            <div class="badge">kawaii flight arc</div>
-            <div class="skyline-title">Starlit route above the clouds</div>
-          </div>
-          <div class="skyline-hearts" aria-hidden="true">
-            <svg class="heart-icon" viewBox="0 0 24 21" role="presentation">
-              <path
-                class="heart-shape"
-                d="M12 20.6C7.3 16.5 3 13.3 3 8.6 3 5.6 5.4 3.3 8.4 3.3c1.7 0 3.3 0.8 4.6 2.1 1.2-1.3 2.9-2.1 4.6-2.1 3 0 5.4 2.3 5.4 5.3 0 4.7-4.3 7.9-9 12.1L12 20.6z"
-              />
-            </svg>
-            <svg class="heart-icon" viewBox="0 0 24 21" role="presentation">
-              <path
-                class="heart-shape"
-                d="M12 20.6C7.3 16.5 3 13.3 3 8.6 3 5.6 5.4 3.3 8.4 3.3c1.7 0 3.3 0.8 4.6 2.1 1.2-1.3 2.9-2.1 4.6-2.1 3 0 5.4 2.3 5.4 5.3 0 4.7-4.3 7.9-9 12.1L12 20.6z"
-              />
-            </svg>
-            <svg class="heart-icon" viewBox="0 0 24 21" role="presentation">
-              <path
-                class="heart-shape"
-                d="M12 20.6C7.3 16.5 3 13.3 3 8.6 3 5.6 5.4 3.3 8.4 3.3c1.7 0 3.3 0.8 4.6 2.1 1.2-1.3 2.9-2.1 4.6-2.1 3 0 5.4 2.3 5.4 5.3 0 4.7-4.3 7.9-9 12.1L12 20.6z"
-              />
-            </svg>
-          </div>
-        </div>
-        <div class="path-wrap top-path">
-          <svg id="flightPathSvg" viewBox="0 0 600 200" aria-hidden="true">
-            <path
-              class="flight-glow"
-              d="M 30 140 C 170 20, 430 20, 570 140"
-              fill="none"
-              stroke="#9fd8ff"
-              stroke-width="12"
-              stroke-linecap="round"
-            />
-            <path
-              id="flightPath"
-              d="M 30 140 C 170 20, 430 20, 570 140"
-              fill="none"
-              stroke="#3A2E3F"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-dasharray="8 10"
-            />
-            <path
-              class="flight-contrail"
-              d="M 30 140 C 170 20, 430 20, 570 140"
-              fill="none"
-              stroke="#ffb6d5"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-dasharray="4 16"
-            />
-            <g id="planeIcon" class="plane-icon">
-              <rect x="-12" y="-5" width="24" height="10" rx="3" />
-              <rect x="-5" y="-12" width="10" height="7" rx="2" />
-              <polygon points="-12,0 -22,6 -22,-6" />
-              <polygon points="12,0 22,4 22,-4" />
-              <g class="plane-cat">
-                <circle class="plane-cat-head" cx="0" cy="-18" r="6" />
-                <polygon
-                  class="plane-cat-ear"
-                  points="-6,-20 -10,-26 -2,-22"
-                />
-                <polygon
-                  class="plane-cat-ear"
-                  points="6,-20 10,-26 2,-22"
-                />
-                <circle class="plane-cat-eye" cx="-2" cy="-18" r="1.1" />
-                <circle class="plane-cat-eye" cx="2" cy="-18" r="1.1" />
-                <circle class="plane-cat-nose" cx="0" cy="-16" r="0.9" />
-                <path class="plane-cat-tail" d="M6 -12 C 12 -10 12 -4 6 -3" />
-              </g>
-            </g>
-          </svg>
         </div>
         <div class="skyline-meta">
           <span class="skyline-chip">Cozy altitude 34k ft</span>
@@ -206,41 +129,7 @@
         </div>
       </section>
 
-      <section class="flight-track card">
-        <h3>Live Flight Path</h3>
-        <div class="track-container">
-          <svg id="trackMap" viewBox="0 0 800 400" aria-hidden="true">
-            <defs>
-              <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#e0f4ff;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#b3e0ff;stop-opacity:1" />
-              </linearGradient>
-            </defs>
-            <rect width="800" height="400" fill="url(#oceanGradient)" />
-            
-            <text x="80" y="80" class="map-label" font-size="16" fill="#3a2e3f">SEA</text>
-            <circle cx="100" cy="100" r="8" fill="#ffb6d5" stroke="#3a2e3f" stroke-width="2"/>
-            
-            <text x="680" y="320" class="map-label" font-size="16" fill="#3a2e3f">MNL</text>
-            <circle cx="700" cy="300" r="8" fill="#ffb6d5" stroke="#3a2e3f" stroke-width="2"/>
-            
-            <path id="routePath" d="M 100 100 Q 400 50 700 300" stroke="#9fd8ff" stroke-width="3" fill="none" stroke-dasharray="8 6" opacity="0.6"/>
-            <path id="flightTrack" d="M 100 100 Q 400 50 700 300" stroke="#3a2e3f" stroke-width="4" fill="none" stroke-linecap="round"/>
-            
-            <g id="planeMarker">
-              <circle cx="0" cy="0" r="10" fill="#ffe48c" stroke="#3a2e3f" stroke-width="2"/>
-              <text x="0" y="5" text-anchor="middle" font-size="12">✈️</text>
-            </g>
-          </svg>
-        </div>
-        <div class="track-legend">
-          <span class="legend-item"><span class="legend-dot" style="background: #ffb6d5;"></span> Airports</span>
-          <span class="legend-item"><span class="legend-dot" style="background: #3a2e3f;"></span> Flight path</span>
-          <span class="legend-item"><span class="legend-dot" style="background: #ffe48c;"></span> Current position</span>
-        </div>
-      </section>
-
-      <header class="hero">
+      <div class="top-grid">
         <section class="hero-intro card">
           <div class="badge">Live kawaii tracker</div>
           <h1 class="hero-title">Jacob's Flight to Maria</h1>
@@ -354,7 +243,176 @@
           </div>
         </section>
 
-        <section class="hero-cats">
+        <section class="tracker-compact card">
+          <div class="tracker-top-compact">
+            <div class="cat-sticker" aria-hidden="true">
+              <svg viewBox="0 0 200 150" role="presentation">
+                <circle class="cat-fur" cx="100" cy="70" r="26" />
+                <ellipse class="cat-fur" cx="100" cy="98" rx="22" ry="16" />
+                <polygon class="cat-fur" points="78,50 88,34 96,54" />
+                <polygon class="cat-fur" points="122,50 112,34 104,54" />
+                <circle class="cat-eye" cx="92" cy="70" r="4" />
+                <circle class="cat-eye" cx="108" cy="70" r="4" />
+                <circle class="cat-nose" cx="100" cy="76" r="2" />
+                <circle class="cat-blush" cx="86" cy="76" r="3" />
+                <circle class="cat-blush" cx="114" cy="76" r="3" />
+                <path class="cat-tail" d="M128 98 C150 102 148 120 134 120" />
+                <path class="heart-doodle" d="M100 30 C100 22 110 22 110 30 C110 38 100 42 100 48 C100 42 90 38 90 30 C90 22 100 22 100 30" />
+              </svg>
+            </div>
+            <div>
+              <h2>PAL125 / PR125</h2>
+              <p class="tracker-sub">Philippine Air Lines 125</p>
+            </div>
+            <div class="status-chip">Live</div>
+          </div>
+          <div class="tracker-route-compact">
+            <div class="airport">
+              <span class="airport-code">SEA</span>
+              <span class="airport-city">Seattle</span>
+            </div>
+            <div class="route-arrow-compact">→</div>
+            <div class="airport">
+              <span class="airport-code">MNL</span>
+              <span class="airport-city">Manila</span>
+            </div>
+          </div>
+          <div class="progress-pill-compact">
+            <span class="pill-label">Progress</span>
+            <span id="progressPercent">18%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-meta-compact">
+            <div class="meta-block">
+              <span class="label">Elapsed</span>
+              <span id="liveTicker">02:17:00</span>
+            </div>
+            <div class="meta-block">
+              <span class="label">Remaining</span>
+              <span id="remainingTime">10h 01m</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="flight-track-compact card">
+        <div class="track-header">
+          <h3>Live Flight Path</h3>
+          <div class="path-wrap-inline">
+            <svg id="flightPathSvg" viewBox="0 0 600 120" aria-hidden="true">
+              <path
+                class="flight-glow"
+                d="M 30 80 C 170 20, 430 20, 570 80"
+                fill="none"
+                stroke="#9fd8ff"
+                stroke-width="8"
+                stroke-linecap="round"
+              />
+              <path
+                id="flightPath"
+                d="M 30 80 C 170 20, 430 20, 570 80"
+                fill="none"
+                stroke="#3A2E3F"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-dasharray="6 8"
+              />
+              <path
+                class="flight-contrail"
+                d="M 30 80 C 170 20, 430 20, 570 80"
+                fill="none"
+                stroke="#ffb6d5"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-dasharray="4 12"
+              />
+              <g id="planeIcon" class="plane-icon">
+                <rect x="-10" y="-4" width="20" height="8" rx="2" />
+                <rect x="-4" y="-10" width="8" height="6" rx="2" />
+                <polygon points="-10,0 -18,5 -18,-5" />
+                <polygon points="10,0 18,3 18,-3" />
+                <g class="plane-cat">
+                  <circle class="plane-cat-head" cx="0" cy="-15" r="5" />
+                  <polygon
+                    class="plane-cat-ear"
+                    points="-5,-17 -8,-22 -2,-18"
+                  />
+                  <polygon
+                    class="plane-cat-ear"
+                    points="5,-17 8,-22 2,-18"
+                  />
+                  <circle class="plane-cat-eye" cx="-1.5" cy="-15" r="0.9" />
+                  <circle class="plane-cat-eye" cx="1.5" cy="-15" r="0.9" />
+                  <circle class="plane-cat-nose" cx="0" cy="-13" r="0.7" />
+                  <path class="plane-cat-tail" d="M5 -10 C 10 -8 10 -3 5 -2" />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="track-container-compact">
+          <svg id="trackMap" viewBox="0 0 800 280" aria-hidden="true">
+            <defs>
+              <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#e0f4ff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#b3e0ff;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="800" height="280" fill="url(#oceanGradient)" />
+            
+            <text x="80" y="60" class="map-label" font-size="14" fill="#3a2e3f">SEA</text>
+            <circle cx="100" cy="70" r="7" fill="#ffb6d5" stroke="#3a2e3f" stroke-width="2"/>
+            
+            <text x="680" y="230" class="map-label" font-size="14" fill="#3a2e3f">MNL</text>
+            <circle cx="700" cy="210" r="7" fill="#ffb6d5" stroke="#3a2e3f" stroke-width="2"/>
+            
+            <path id="routePath" d="M 100 70 Q 400 30 700 210" stroke="#9fd8ff" stroke-width="2" fill="none" stroke-dasharray="6 4" opacity="0.5"/>
+            <path id="flightTrack" d="M 100 70 Q 400 30 700 210" stroke="#3a2e3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+            
+            <g id="planeMarker">
+              <circle cx="0" cy="0" r="8" fill="#ffe48c" stroke="#3a2e3f" stroke-width="2"/>
+              <text x="0" y="4" text-anchor="middle" font-size="10">✈️</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="info-rail card">
+        <div class="info-grid">
+          <div class="info-block">
+            <h4>Departure</h4>
+            <div class="info-row"><span class="label">Airport</span><span>Seattle-Tacoma Intl</span></div>
+            <div class="info-row"><span class="label">Gate</span><span>S11</span></div>
+            <div class="info-row"><span class="label">Date</span><span>Friday 16-Jan-2026</span></div>
+            <div class="info-row"><span class="label">Time</span><span>09:47PM PST</span></div>
+          </div>
+          <div class="info-block">
+            <h4>Arrival</h4>
+            <div class="info-row"><span class="label">Airport</span><span>Manila Int'l</span></div>
+            <div class="info-row"><span class="label">Terminal</span><span>Terminal 1</span></div>
+            <div class="info-row"><span class="label">Date</span><span>Sunday 18-Jan-2026</span></div>
+            <div class="info-row"><span class="label">Time</span><span>02:05AM PST</span></div>
+          </div>
+          <div class="info-block">
+            <h4>Live Stats</h4>
+            <div class="info-row"><span class="label">Total time</span><span id="totalTime">12h 18m</span></div>
+            <div class="info-row"><span class="label">Miles flown</span><span><span id="milesFlown">1,171</span> mi</span></div>
+            <div class="info-row"><span class="label">Miles to go</span><span><span id="milesRemaining">5,513</span> mi</span></div>
+            <div class="info-row"><span class="label">Elapsed</span><span id="elapsedTime">2h 17m</span></div>
+          </div>
+          <div class="info-block">
+            <h4>Flight Info</h4>
+            <div class="info-row"><span class="label">Airline</span><span>Philippine Air Lines 125</span></div>
+            <div class="info-row"><span class="label">Flight IDs</span><span>PAL125 / PR125</span></div>
+            <div class="info-row"><span class="label">Route</span><span>SEA to MNL</span></div>
+            <div class="info-row"><span class="label">Status</span><span>En route and on time</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero-cats-compact">
           <div class="cat-card card">
             <div class="cat-title">Jacob in plane</div>
             <svg class="cat-svg" viewBox="0 0 200 150" aria-hidden="true">
@@ -427,6 +485,8 @@
             <p class="cat-caption">Airport cats cheering with heart confetti.</p>
           </div>
         </section>
+      </section>
+
       </header>
 
       <section class="tracker card">
