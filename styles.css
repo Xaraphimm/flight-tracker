@@ -1072,7 +1072,7 @@ body {
   border-radius: 14px;
   border: 2px solid var(--ink);
   overflow: hidden;
-  background: #fff;
+  background: linear-gradient(180deg, #e0f4ff 0%, #b3e0ff 100%);
   box-shadow: 3px 3px 0 var(--shadow);
   height: 220px;
 }

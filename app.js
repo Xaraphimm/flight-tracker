@@ -6,31 +6,43 @@ let flightData = {
   airspeed: null,
 };
 
-const fetchLiveFlightData = async () => {
+/**
+ * Calculate realistic airspeed based on flight phase and progress
+ * Boeing 777 speed profile: Takeoff (200mph) → Cruise (570mph) → Landing (180mph)
+ * @param {number} progress - Flight progress from 0.0 to 1.0
+ * @param {number} elapsedSeconds - Seconds since departure (for smooth variation)
+ * @returns {number} Speed in mph
+ */
+const calculateRealisticAirspeed = (progress, elapsedSeconds) => {
   try {
-    const response = await fetch(
-      "https://opensky-network.org/api/states/all?icao24=75000d"
-    );
-    if (!response.ok) throw new Error("API call failed");
-    const data = await response.json();
+    // PHASE 1: TAKEOFF & CLIMB (0% - 8%)
+    if (progress < 0.08) {
+      const climbProgress = progress / 0.08; // 0.0 to 1.0 within phase
+      const baseSpeed = 200 + (climbProgress * 375); // 200 → 575 mph
+      const variation = Math.sin(elapsedSeconds / 30) * 5; // ±5 mph variation
+      return Math.round(baseSpeed + variation);
+    }
     
-    if (data.states && data.states.length > 0) {
-      const state = data.states[0];
-      console.log("Live flight data:", state);
-      
-      // Parse airspeed (velocity in m/s at index 9)
-      if (state[9] !== null && state[9] !== undefined) {
-        flightData.airspeed = {
-          mph: Math.round(state[9] * 2.23694),
-          kph: Math.round(state[9] * 3.6)
-        };
-      } else {
-        flightData.airspeed = null;
-      }
+    // PHASE 2: CRUISE (8% - 92%)
+    else if (progress < 0.92) {
+      const baseSpeed = 570; // Typical 777 cruise speed
+      // Add jetstream effect (faster over Pacific mid-flight)
+      const jetstreamBoost = progress > 0.3 && progress < 0.7 ? 8 : 0;
+      // Small turbulence variation
+      const variation = Math.sin(elapsedSeconds / 45) * 7;
+      return Math.round(baseSpeed + jetstreamBoost + variation);
+    }
+    
+    // PHASE 3: DESCENT & LANDING (92% - 100%)
+    else {
+      const descentProgress = (progress - 0.92) / 0.08; // 0.0 to 1.0 within phase
+      const baseSpeed = 575 - (descentProgress * 395); // 575 → 180 mph
+      const variation = Math.sin(elapsedSeconds / 25) * 4;
+      return Math.round(Math.max(180, baseSpeed + variation));
     }
   } catch (error) {
-    console.warn("Failed to fetch live flight data, using scheduled times");
-    flightData.airspeed = null;
+    console.warn("Airspeed calculation error:", error);
+    return null; // Will trigger funny message fallback
   }
 };
 
@@ -113,11 +125,16 @@ const updateAirspeed = () => {
   if (!airspeedValue) return;
   
   if (flightData.airspeed) {
+    // Display calculated airspeed
     airspeedValue.textContent = 
       `${flightData.airspeed.mph} mph / ${flightData.airspeed.kph} kph`;
+    
+    // Retrigger speedPulse animation for visual feedback
     airspeedValue.style.animation = 'none';
-    setTimeout(() => airspeedValue.style.animation = '', 10);
+    airspeedValue.offsetHeight; // Force reflow for reliable animation restart
+    airspeedValue.style.animation = '';
   } else {
+    // Fallback to funny messages on calculation error
     const index = Math.floor(Date.now() / 15000) % funnyMessages.length;
     airspeedValue.textContent = funnyMessages[index];
   }
@@ -129,6 +146,17 @@ const updateUI = () => {
   const remainingSeconds = Math.max(totalSeconds - elapsedSeconds, 0);
   const milesRemainingValue = flightData.milesTotal * (1 - progress);
   const milesFlownValue = flightData.milesTotal - milesRemainingValue;
+
+  // Calculate realistic airspeed based on flight phase
+  const speedMph = calculateRealisticAirspeed(progress, elapsedSeconds);
+  if (speedMph !== null) {
+    flightData.airspeed = {
+      mph: speedMph,
+      kph: Math.round(speedMph * 1.60934)
+    };
+  } else {
+    flightData.airspeed = null; // Triggers funny message fallback
+  }
 
   progressFill.style.width = `${progress * 100}%`;
   progressPercent.textContent = `${Math.round(progress * 100)}%`;
@@ -227,13 +255,18 @@ const launchConfetti = () => {
   const animate = () => {
     ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
 
-    particles.forEach((p, i) => {
+    // Iterate backwards to safely remove particles during loop
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
       p.tiltAngle += p.tiltAngleIncrement;
       p.y += p.vy;
       p.x += p.vx;
       p.tilt = Math.sin(p.tiltAngle) * 15;
 
-      if (p.y > confettiCanvas.height) particles.splice(i, 1);
+      if (p.y > confettiCanvas.height) {
+        particles.splice(i, 1);
+        continue;
+      }
 
       ctx.save();
       ctx.translate(p.x, p.y);
@@ -250,7 +283,7 @@ const launchConfetti = () => {
         ctx.fill();
       }
       ctx.restore();
-    });
+    }
 
     if (particles.length > 0) {
       animationId = requestAnimationFrame(animate);
@@ -273,10 +306,9 @@ const checkLandingConfetti = () => {
   }
 };
 
-(async () => {
-  await fetchLiveFlightData();
+// Initialize flight tracker
+(() => {
   updateUI();
   checkLandingConfetti();
   setInterval(updateUI, 1000);
-  setInterval(fetchLiveFlightData, 120000);
 })();
