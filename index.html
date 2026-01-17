@@ -959,6 +959,38 @@
       <span>Special Access</span>
     </button>
 
+    <!-- Code Redemption Status Panel -->
+    <div class="redemption-panel" id="redemptionPanel" aria-label="Code Redemption Status">
+      <div class="redemption-header">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+          <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z" fill="currentColor"/>
+        </svg>
+        <span>Code Status</span>
+      </div>
+      <div class="redemption-indicators">
+        <!-- Jacob's indicator -->
+        <div class="redemption-item" id="jacobIndicator">
+          <div class="led-container">
+            <div class="led" id="jacobLed"></div>
+          </div>
+          <div class="redemption-info">
+            <span class="redemption-name">Jacob</span>
+            <span class="redemption-status" id="jacobStatus">Not Redeemed</span>
+          </div>
+        </div>
+        <!-- Maria's indicator -->
+        <div class="redemption-item" id="mariaIndicator">
+          <div class="led-container">
+            <div class="led" id="mariaLed"></div>
+          </div>
+          <div class="redemption-info">
+            <span class="redemption-name">Maria</span>
+            <span class="redemption-status" id="mariaStatus">Not Redeemed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Special Access Modal -->
     <div class="special-access-modal" id="specialAccessModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-backdrop" id="modalBackdrop"></div>
@@ -1251,18 +1283,56 @@
           }
         }
         
-        // Try to decrypt with all letters
+        // Try to decrypt with all letters - returns { content, letterKey } or null
         async function tryDecrypt(password) {
-          // Try letter 1
+          // Try letter 1 (Maria's letter)
           const letter1 = await decryptLetter(ENCRYPTED_LETTERS.letter1, password);
-          if (letter1) return letter1;
-          
-          // Try letter 2
+          if (letter1) return { content: letter1, letterKey: 'maria' };
+
+          // Try letter 2 (Jacob's letter)
           const letter2 = await decryptLetter(ENCRYPTED_LETTERS.letter2, password);
-          if (letter2) return letter2;
-          
+          if (letter2) return { content: letter2, letterKey: 'jacob' };
+
           return null;
         }
+
+        // Update LED indicators based on localStorage
+        function updateRedemptionStatus() {
+          const jacobRedeemed = localStorage.getItem('jacobRedeemed') === 'true';
+          const mariaRedeemed = localStorage.getItem('mariaRedeemed') === 'true';
+
+          const jacobLed = document.getElementById('jacobLed');
+          const mariaLed = document.getElementById('mariaLed');
+          const jacobStatus = document.getElementById('jacobStatus');
+          const mariaStatus = document.getElementById('mariaStatus');
+          const jacobIndicator = document.getElementById('jacobIndicator');
+          const mariaIndicator = document.getElementById('mariaIndicator');
+
+          if (jacobLed && jacobStatus && jacobIndicator) {
+            jacobLed.className = jacobRedeemed ? 'led on' : 'led off';
+            jacobStatus.textContent = jacobRedeemed ? 'Redeemed ✓' : 'Not Redeemed';
+            jacobIndicator.classList.toggle('redeemed', jacobRedeemed);
+          }
+
+          if (mariaLed && mariaStatus && mariaIndicator) {
+            mariaLed.className = mariaRedeemed ? 'led on' : 'led off';
+            mariaStatus.textContent = mariaRedeemed ? 'Redeemed ✓' : 'Not Redeemed';
+            mariaIndicator.classList.toggle('redeemed', mariaRedeemed);
+          }
+        }
+
+        // Mark a letter as redeemed
+        function markRedeemed(letterKey) {
+          if (letterKey === 'jacob') {
+            localStorage.setItem('jacobRedeemed', 'true');
+          } else if (letterKey === 'maria') {
+            localStorage.setItem('mariaRedeemed', 'true');
+          }
+          updateRedemptionStatus();
+        }
+
+        // Initialize redemption status on page load
+        updateRedemptionStatus();
         
         // Handle form submission
         form.addEventListener('submit', async (e) => {
@@ -1308,14 +1378,17 @@
               attemptCount = 0;
               input.value = '';
               codeEntryView.style.display = 'none';
-              
+
+              // Mark this letter as redeemed and update LED indicators
+              markRedeemed(decrypted.letterKey);
+
               // Show snarky success message center screen
               successOverlay.style.display = 'flex';
-              
+
               // After 2 seconds, hide success message and show letter
               setTimeout(() => {
                 successOverlay.style.display = 'none';
-                letterContent.textContent = decrypted;
+                letterContent.textContent = decrypted.content;
                 letterView.style.display = 'block';
               }, 2000);
             } else {

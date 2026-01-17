@@ -310,10 +310,20 @@ const checkLandingConfetti = () => {
   }
 };
 
+// Celebration confetti for Jacob's arrival! 🎉
+const launchCelebrationConfetti = () => {
+  const celebrationShown = sessionStorage.getItem("celebrationConfettiShown");
+  if (celebrationShown) return;
+
+  sessionStorage.setItem("celebrationConfettiShown", "true");
+  setTimeout(() => launchConfetti(), 300);
+};
+
 // Initialize flight tracker
 (() => {
   updateUI();
   checkLandingConfetti();
+  launchCelebrationConfetti(); // Celebrate Jacob's arrival! 🎉
   setInterval(updateUI, 1000);
 })();
 
