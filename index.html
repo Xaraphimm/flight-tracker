@@ -1018,6 +1018,15 @@
           <p class="modal-hint">This message is encrypted and can only be read with the correct code</p>
         </div>
         
+        <!-- Success Message Overlay (shows center screen) -->
+        <div class="success-overlay" id="successOverlay" style="display:none">
+          <div class="success-message-box">
+            <div class="success-cat">~(=^.^=)~</div>
+            <div class="success-text">Oh, you actually got it right?</div>
+            <div class="success-subtext">...impressive. Your letter awaits!</div>
+          </div>
+        </div>
+        
         <!-- Letter View -->
         <div class="modal-view" id="letterView" style="display:none">
           <div class="letter-header">
@@ -1038,17 +1047,19 @@
     <!-- Encrypted Letters Data -->
     <script>
       const ENCRYPTED_LETTERS = {
+        // Maria's letter (unlocked with Maria's code)
         letter1: {
-          salt: "Nty1bhJHEsKX86dpf809UQ==",
-          iv: "JVZs/k395cpwewkR",
-          ciphertext: "4A03c1KR/7nqZRHo5Dm1cqVdDQKP/q4SGjuUwEUd3G6F4ilvhR/LXII+KBU0bnVsfCH5j3HAzhVYFhXeKh56pobcMD+JtOCUMRXnm5o1Sk0tn63DZ+adoA6yHlI8/6fK8NMDOnYD+4LhTHh+tyxpgqoHPPxLDJ6wBDLWW498R+XLYV/8zOHX/ERbcgFM95Ja7blBsVNX/j1V4Xrd66sV+MV1c3pqYoTmE7XMkZ4V3Pl3CfWeTzgx7M3VA1+3rwVcC7xK2ntAF+VmoI/98ISBq/7wFxmV8FM7eI2U1WZM0bPXB3R0QD53Y2GrlylRStQzFq+v5GZGeOaHqBZJYbJaQXQNLX2iB2RNzsdqOwHc8W0lqOYNRtbo9OLxWicNl+HLMn0p72qyb6pu5lN22h9rfDAJOW+DZ/ugBVP0N5iPmDd++Q==",
-          authTag: "YbakL/myTVrN/7nYsKnrvQ=="
+          salt: "Zqs0vGOOTirvD1VjQHaeHg==",
+          iv: "uPeWTxo4yp/sbZRa",
+          ciphertext: "E7eY9KgFj9TZragABYRuZ99BdKhGX9EQA8CvQ8OW5LAMaiCNy4WIMevAlJtwaJ2VxTJVnTjxSgcquilXrrx/fpgWRGN0rigUflAHwnxk1G1cGJ7tmC+LJe82uq9EPSv7YSJ6PYXmFJvYRxZc/m9VWxGx/hmqSLxVdBTMHDBTdp8dVDN7Hw9CxI6y4eQQUrWBXSGLpc6ocIiscYIA+OEFHAAXTXCZVnBQhVJ8jHsv3j7aBO/ofbhc0e5klBPmEE5dvXrk378XdRacW2nYTVxn3N2R7vu9QpHfcHogKnjQAENwdhHOKEwRh2kDKxrcPk89xl4pooPAthWyFmEVQclvy0k9Ol41sJ3Y/MGINrhXnl7IuoESLo7w4bN5N6jMaKuU4+c4hC73SxGueupATyxizspfq6bdqJQ9DIoKLQfLPKTayXl0/RCnhIgB8HI+3s8NXvmEG0xWcWWrRSlQzvmIBAke5tjglK9buxOdfSyJLQLopPY4mub1V8MGo4vSFm9Mf95fB32pwatMQRUuwXFxCpB86TpPBNb1FsUVb2KCHjwQtE/V5+FMmgAnSX2rtQVfomdBgiz+zCLt5v76lIsYU3B843I5I0R8bTFJEa4=",
+          authTag: "SYc25ZQ645eEjjAiVwLXHg=="
         },
+        // Jacob's letter (unlocked with Jacob's code)
         letter2: {
-          salt: "CRCkgdjxr260tpzM+xALFA==",
-          iv: "WdiRLwuvR6uoHuEd",
-          ciphertext: "Iq39qYUjR5Dms2ngvaT0VWQ5Nlqb0RydoBCjDWFfy7ifOg8Si0G0mGVLr0n4gUjyD4kKgf8RKdTcULkthgr1uwwj59vkq2EdW1eqCNdVUgdHwhMejTJeBwsDAAwfbolo4pkGvn2S4PnxzM/AeUFP/tAf0sK2HR4iTOkU0+j7T9+wUkdJnELs/SWKk7uI84xUGwq8fVTgZQKZ+jsdBNO61MPfyMUeNQqaimtyAgf11rMycKgtNvjYqM/qbUb+CamYwAE7DEOSZsBYwp4A/MMDQqMOo/IwB2/EP5IzpsoLMSUSHa/sSGzCQKUeVHGM7nFNwU6m1V/woSv9/d30qvYoFu4ejtJGjURBWpQFqtlTVq5556a7LGZmMB0IkLv6K78fohjVhgQLmWleAFszH/t3p24agHBJDwC2GkY4SeS7SGGYrQ==",
-          authTag: "Rj8tTR2h8h39u8Xo+n2CYA=="
+          salt: "dDShkODz+KC9xlPPmI9u9w==",
+          iv: "i8H2B/FJAUboJmBG",
+          ciphertext: "XbwkODBSa7q2EzW98srhDV5ZhluSeuFWzfDarTz9YtxZTs3ekH7KUYoIY0ic8xXoh1dPxm0vlBw0JOEVYO0OQkmcrlAflw6kMFZ7BqmRRwNDydYW4N8V+ipLA640/Pk8/rzqdvd7c4/GmqN1NEdx1ES+YqQZqgwGhjfuJfEXTAo7mc0DdJvBEmg/QNOM2lBI0+MP6SMLxXU3Ssrxy0/vWWyuSxJQ+WH4IPsz9u7mpA9bYynnP+MX26nHlo9BmOqqMCUZC6Z3K28Cw+FKZR8n0HE6eIWZegkqu1dAHOK1wXJJo/WuIWHTAVS7MXKbl/gwR+k/ko+gQxpW2N0Wo3m8OpBZk7QsTHf+ygisfAd8YKonlF6dw7JaprBKE60zBOELXDSa/TsLdVGlgBO7jlCsHWhkfY3BVhruEY6KbjUnczckkk7vGOYCxeJhaCgHURXwREyBxcd1jqOZzny5Ws6nVSyylxCB7wRUrCp4qscVZARPrzxZAoUpyI9sAkVUyvLol3YdNLUIT3wXWK7GjdGKXGP90TQ6xabMWYs7xk3cgjvBrAu29d5uKfx8PQZOTP3lbdgjZ1W0FejymGP7F3SZpYyOXyiPuT1NvNnFUlzT3zk=",
+          authTag: "J9cif++ai5zJeVvVmWh9oQ=="
         }
       };
       const CRYPTO_CONFIG = { iterations: 100000, keyLength: 32 };
@@ -1080,6 +1091,7 @@
         const letterView = document.getElementById('letterView');
         const letterContent = document.getElementById('letterContent');
         const closeLetterBtn = document.getElementById('closeLetterBtn');
+        const successOverlay = document.getElementById('successOverlay');
         
         // Open modal
         btn.addEventListener('click', () => {
@@ -1097,6 +1109,7 @@
           errorMsg.style.display = 'none';
           codeEntryView.style.display = 'block';
           letterView.style.display = 'none';
+          successOverlay.style.display = 'none';
           letterContent.textContent = '';
         }
         
@@ -1248,12 +1261,20 @@
             const decrypted = await tryDecrypt(password);
             
             if (decrypted) {
-              // Success! Show the letter
+              // Success! Show snarky message first, then the letter
               attemptCount = 0;
-              letterContent.textContent = decrypted;
-              codeEntryView.style.display = 'none';
-              letterView.style.display = 'block';
               input.value = '';
+              codeEntryView.style.display = 'none';
+              
+              // Show snarky success message center screen
+              successOverlay.style.display = 'flex';
+              
+              // After 2 seconds, hide success message and show letter
+              setTimeout(() => {
+                successOverlay.style.display = 'none';
+                letterContent.textContent = decrypted;
+                letterView.style.display = 'block';
+              }, 2000);
             } else {
               // Failed
               attemptCount++;
