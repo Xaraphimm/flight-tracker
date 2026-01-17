@@ -39,7 +39,7 @@ body {
 
 .page {
   position: relative;
-  padding: 32px 18px 50px;
+  padding: 20px 16px 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -132,22 +132,22 @@ body {
 }
 
 .skyline-compact {
-  margin-bottom: 18px;
-  padding: 16px 20px 14px;
+  margin-bottom: 16px;
+  padding: 14px 18px 12px;
   background: linear-gradient(160deg, #fff6fb, #f0f7ff);
   overflow: hidden;
   border: 3px solid var(--ink);
-  box-shadow: 6px 6px 0 rgba(126, 106, 134, 0.4);
+  box-shadow: 5px 5px 0 rgba(126, 106, 134, 0.4);
 }
 
 .skyline-timer-hero {
   position: relative;
   z-index: 1;
   text-align: center;
-  margin-bottom: 14px;
-  padding: 16px;
+  margin-bottom: 12px;
+  padding: 14px;
   background: linear-gradient(160deg, #fff0f8, #f0f4ff);
-  border-radius: 18px;
+  border-radius: 16px;
   border: 3px solid var(--ink);
   box-shadow: 3px 3px 0 var(--shadow);
 }
@@ -858,30 +858,30 @@ body {
 }
 
 .info-rail {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   background: linear-gradient(150deg, #fffef7, #fff9f5);
-  padding: 18px;
+  padding: 16px;
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 .info-block h4 {
   font-family: "Cherry Bomb One", "Comic Sans MS", cursive;
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
+  margin: 0 0 8px 0;
+  font-size: 1rem;
 }
 
 .info-row {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 5px 0;
+  padding: 6px 0;
   font-size: 0.85rem;
-  border-bottom: 1px dashed rgba(58, 46, 63, 0.2);
+  border-bottom: 1px dashed rgba(58, 46, 63, 0.25);
 }
 
 .info-row:last-child {
@@ -892,7 +892,7 @@ body {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 .cat-gallery {
@@ -939,11 +939,12 @@ body {
 
 .path-wrap-inline {
   margin-bottom: 10px;
+  height: 100px;
 }
 
 .path-wrap-inline svg {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
@@ -953,11 +954,12 @@ body {
   overflow: hidden;
   background: #fff;
   box-shadow: 3px 3px 0 var(--shadow);
+  height: 220px;
 }
 
 #trackMap {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
